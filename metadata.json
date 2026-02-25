@@ -1,0 +1,5 @@
+{
+  "name": "Remix: HAZON | Final 24/02",
+  "description": "Your personal discernment companion for clarity and vision.",
+  "requestFramePermissions": ["microphone"]
+}

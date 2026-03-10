@@ -1,3 +1,5 @@
+import html2canvas from 'html2canvas';
+import { generateVisionPDF } from './generateVisionPDF';
 import React, { useState, useEffect, useRef } from 'react';
 import { DiscernmentState, Message, VisionDocument, VisionSession, AppView, CreditCard } from './types';
 import { getNextDiscernmentStep, generateSynthesis } from './geminiService';
@@ -1695,7 +1697,65 @@ const App: React.FC = () => {
     const saved = localStorage.getItem('hazon_cards');
     return saved ? JSON.parse(saved) : [];
   });
+  const handleVerifyPayment = async (reference: string, visionId: string) => {
+  try {
+    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+    const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
+    const response = await fetch(
+      `${supabaseUrl}/functions/v1/verify-paystack-payment`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${supabaseKey}`,
+        },
+        body: JSON.stringify({
+          action: "verify",
+          amount: 300,
+          vision_id: visionId,
+          reference: reference,
+        }),
+      }
+    );
+    const data = await response.json();
+
+    if (!data.status) throw new Error(data.message || t.verificationFailed);
+
+    window.history.replaceState({}, document.title, window.location.pathname);
+
+
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+      await loadAppData(session.user);
+      // To'langan visionni avtomatik ochish
+      const { data: visionData } = await supabase
+        .from('visions')
+        .select('*')
+        .eq('id', visionId)
+        .single();
+      if (visionData) {
+        const mapped = {
+          id: visionData.id.toString(),
+          title: visionData.title,
+          date: formatDate(visionData.created_at),
+          state: visionData.status,
+          messages: visionData.chat_session || [],
+          document: typeof visionData.generated_vision === 'string' 
+          ? JSON.parse(visionData.generated_vision) 
+          : visionData.generated_vision || null,
+          unlocked: true,
+          is_paid: true,
+          language: visionData.language
+        };
+        setCurrentSession(mapped);
+        setView('session');
+      }
+    }
+      } catch (err: any) {
+        setGlobalError(err.message || t.errorGeneric);
+      }
+    };
   useEffect(() => {
     localStorage.setItem('hazon_cards', JSON.stringify(cards));
   }, [cards]);
@@ -1733,36 +1793,25 @@ const App: React.FC = () => {
     const reference = params.get('reference') || params.get('trxref');
     const visionId = params.get('vision_id');
 
-    if (reference && visionId) {
-      handleVerifyPayment(reference, visionId);
-    }
+
 
     return () => subscription.unsubscribe();
   }, [user?.id]);
 
-  const handleVerifyPayment = async (reference: string, visionId: string) => {
-    try {
-      const { data, error: funcError } = await supabase.functions.invoke('verify-paystack-payment', {
-        body: { 
-          action: 'verify',
-          amount: 300,
-          vision_id: visionId,
-          reference: reference 
-        }
-      });
+  useEffect(() => {
+    if (!user) return;
+    const params = new URLSearchParams(window.location.search);
+    const reference = params.get('reference') || params.get('trxref');
+    const visionId = params.get('vision_id');
 
-      if (funcError) throw funcError;
-      if (!data.status) throw new Error(data.message || t.verificationFailed);
-
-      window.history.replaceState({}, document.title, window.location.pathname);
-      
-      const { data: { session } } = await supabase.auth.getSession();
-      if (session?.user) await loadAppData(session.user);
-      setGlobalError("Vision successfully unlocked.");
-    } catch (err: any) {
-      setGlobalError(err.message || t.errorGeneric);
+    if (reference && visionId) {
+      setTimeout(() => handleVerifyPayment(reference, visionId), 1000);
     }
-  };
+  }, [user]);
+
+  
+
+
 
   const loadAppData = async (currentUser: any) => {
     setIsVisionsLoading(true);
@@ -1790,7 +1839,11 @@ const App: React.FC = () => {
         date: formatDate(d.created_at),
         state: d.status as DiscernmentState,
         messages: d.chat_session || [], 
-        document: d.generated_vision || null,
+        document: d.generated_vision 
+        ? (typeof d.generated_vision === 'string' 
+          ? JSON.parse(d.generated_vision) 
+          : d.generated_vision)
+        : null,
         unlocked: d.is_paid || false,
         is_paid: d.is_paid || false,
         language: d.language
@@ -1844,20 +1897,26 @@ const App: React.FC = () => {
     }
   };
 
-  const onOpenSession = (s: VisionSession) => {
-    setCurrentSession(s);
-    if (s.language) setLang(s.language as Language);
-    if (s.state === DiscernmentState.COMPLETE) {
-      if (s.unlocked || s.is_paid) {
-        setView('session');
-      } else {
-        setView('paywall');
-      }
-    } else {
+const onOpenSession = (s: VisionSession) => {
+  setCurrentSession(s);
+  if (s.language) setLang(s.language as Language);
+  if (s.state === DiscernmentState.COMPLETE) {
+    if (s.unlocked || s.is_paid) {
       setView('session');
+    } else {
+      supabase.from('visions').select('is_paid').eq('id', s.id).single().then(({ data }) => {
+        if (data?.is_paid) {
+          setCurrentSession({ ...s, is_paid: true, unlocked: true });
+          setView('session');
+        } else {
+          setView('paywall');
+        }
+      });
     }
-  };
-
+  } else {
+    setView('session');
+  }
+};
   const handleGenerationComplete = (doc: VisionDocument) => {
     if (!currentSession) return;
     
@@ -1895,7 +1954,18 @@ const App: React.FC = () => {
         {view === 'dashboard' && <Dashboard sessions={sessions} isLoading={isVisionsLoading} onNewSession={startNewSession} onOpenSession={onOpenSession} t={t} />}
         {view === 'session' && currentSession && <SessionView session={currentSession} userName={userProfile?.full_name || "USER"} onBack={() => { loadVisions(user.id); setView('dashboard'); }} onStartGen={() => setView('generating')} onError={setGlobalError} t={t} lang={lang} />}
         {view === 'generating' && currentSession && <GeneratingView session={currentSession} onComplete={handleGenerationComplete} onBack={() => setView('session')} onError={setGlobalError} t={t} lang={lang} />}
-        {view === 'paywall' && currentSession && user && <VisionUnlock visionId={currentSession.id} userEmail={user.email} onBack={() => setView('dashboard')} t={t} />}
+        {view === 'paywall' && currentSession && user && 
+          <VisionUnlock 
+            visionId={currentSession.id} 
+            userEmail={user.email} 
+            onBack={() => setView('dashboard')} 
+            onSuccess={() => {
+              setCurrentSession(prev => prev ? { ...prev, is_paid: true, unlocked: true } : prev);
+              setView('session'); // ✅ 'vision' emas, 'session'!
+            }}
+            t={t} 
+          />
+        }
         {view === 'confirmation' && <ConfirmationView title={confData.title} desc={confData.desc} onBack={() => setView('auth')} t={t} />}
         {view === 'notFound' && <NotFoundView onBack={() => setView('dashboard')} t={t} />}
         {view === 'profile' && user && userProfile && <ProfilePage user={user} profile={userProfile} lang={lang} setLang={setLang} onBack={() => setView('dashboard')} onLogout={handleLogout} onPayments={() => setView('payments')} t={t} />}
@@ -2329,7 +2399,350 @@ const VisionCard: React.FC<{ session: VisionSession, onOpen: () => void, t: any 
   );
 };
 
-const SessionView: React.FC<{ session: VisionSession, userName: string, onBack: () => void, onStartGen: () => void, onError: (msg: string) => void, t: any, lang: Language }> = ({ session, userName, onBack, onStartGen, onError, t, lang }) => {
+const SessionView: React.FC<{
+  session: VisionSession,
+  userName: string,
+  onBack: () => void,
+  onStartGen: () => void,
+  onError: (msg: string) => void,
+  t: any,
+  lang: Language
+}> = ({ session, userName, onBack, onStartGen, onError, t, lang }) => {
+
+  if (session.document && (session.is_paid || session.unlocked)) {
+    const doc = session.document;
+
+    const visionRef = React.useRef<HTMLDivElement>(null);
+
+    const handleDownloadPDF = async () => {
+       await generateVisionPDF(session.document);
+    };
+
+    // Ikki formatni ham qo'llab-quvvatlash
+// Vision statement
+const visionStatement =
+  typeof doc.vision_statement === 'object'
+    ? doc.vision_statement?.summary || doc.vision_statement?.title || ''
+    : doc.vision_statement || doc.visionStatement || '';
+
+// Mission statement
+const missionStatement =
+  doc.objectives?.mandate ||
+  doc.mission_statement ||
+  doc.missionStatement || '';
+
+// Core values
+const coreValues =
+  doc.core_tenets?.map((t: any) => ({ value: t.principle, description: t.description })) ||
+  doc.core_values ||
+  doc.coreValues?.map((v: any) => ({ value: v.value || v, description: v.description || '' })) ||
+  [];
+
+// Biblical foundation
+const biblicalFoundation = (() => {
+  if (doc.spiritual_foundation?.anchor_scriptures?.length > 0) {
+    return doc.spiritual_foundation.anchor_scriptures.map((s: string) => {
+      const parts = s.split(' - ');
+      return { scripture: parts[0] || '', theme: parts.slice(1).join(' - ') || s };
+    });
+  }
+  if (doc.biblical_foundation?.length > 0)
+    return doc.biblical_foundation.map((b: any) => ({ theme: b.theme || b.reference || '', scripture: b.scripture || '' }));
+  if (doc.biblicalFoundation?.length > 0)
+    return doc.biblicalFoundation.map((b: any) => ({ theme: b.theme || b.reference || '', scripture: b.scripture || '' }));
+  return [];
+})();
+
+// Strategic pillars
+const strategicPillars =
+  doc.strategic_pillars ||
+  doc.strategicPillars?.map((p: any) => ({ pillar: p.pillar || p, description: p.description || '' })) ||
+  [];
+
+// Expected impact / next steps
+const expectedImpact =
+  doc.next_steps ||
+  doc.execution_strategy?.short_term_steps ||
+  doc.expected_impact ||
+  doc.desiredOutcomes ||
+  doc.walk_it_out?.next_steps ||
+  [];
+    // Extra normalized fields
+    const title = doc.title || (typeof doc.vision_statement === 'object' ? doc.vision_statement?.title : '') || '';
+    const subtitle = doc.vision_statement?.subtitle || '';
+    const financialGoal = doc.objectives?.financial_goal || '';
+    const biblicalModels: any[] = doc.spiritual_foundation?.biblical_models || [];
+    const impactTargets = doc.impact_targets || null;
+    const lifeContext = doc.life_context || null;
+    const futurePicture: string[] = doc.visualize?.future_picture || doc.objectives?.kingdom_purpose || [];
+    const longTerm: string[] = doc.execution_strategy?.long_term_stewardship || doc.walk_it_out?.weekly_practices || [];
+    const resourceManagement: string = doc.execution_strategy?.resource_management || '';
+    const risks: string[] = doc.risks_and_discernment || [];
+    const rawDeclarations: string[] = doc.spiritual_tools?.declarations || [];
+    const declarations = rawDeclarations.map((d: string) => {
+      if (d.toLowerCase().startsWith('in the name of jesus') || d.toLowerCase().startsWith('in jesus')) return d;
+      return `In the name of Jesus, I declare ${d.charAt(0).toLowerCase()}${d.slice(1)}`;
+    });
+    let prayer: string = doc.spiritual_tools?.prayer || '';
+    if (prayer && !prayer.startsWith('Heavenly Father')) prayer = `Heavenly Father, ${prayer.charAt(0).toLowerCase()}${prayer.slice(1)}`;
+    if (prayer && !prayer.toLowerCase().includes('in jesus name, amen') && !prayer.toLowerCase().includes("in jesus' name, amen")) {
+      prayer = prayer.replace(/\.\s*$/, '') + '. In Jesus name, Amen.';
+    }
+    const reflectionPrompts: string[] = doc.spiritual_tools?.reflection_prompts || doc.reflect?.heart_check || [];
+
+    const SectionHeader = ({ label }: { label: string }) => (
+      <h2 className="text-[10px] uppercase tracking-[0.3em] font-bold opacity-30 mb-4 pb-2 border-b border-black/10">{label}</h2>
+    );
+
+    return (
+  <div className="max-w-3xl mx-auto px-6 md:px-12 animate-fade pt-10 pb-32">
+    <div className="flex items-center justify-between mb-12">
+      <button onClick={onBack} className="text-[10px] uppercase tracking-widest font-bold opacity-40">
+        ← Library
+      </button>
+      <button onClick={handleDownloadPDF} className="text-[10px] uppercase tracking-widest font-bold bg-black text-white px-6 py-3 rounded-full hover:bg-black/80 transition-all">
+        ↓ Save as PDF
+      </button>
+    </div>
+
+    <div className="space-y-12">
+
+      {/* TITLE */}
+      <div>
+        <h1 className="text-4xl md:text-5xl serif tracking-tight mb-2">{title}</h1>
+        {subtitle && <p className="text-[10px] uppercase tracking-widest opacity-40">{subtitle}</p>}
+        {visionStatement && <p className="text-lg serif leading-relaxed opacity-70 italic mt-4">{visionStatement}</p>}
+        {financialGoal && (
+          <div className="mt-4 pl-4 border-l-2 border-black/20 bg-black/5 p-3 rounded">
+            <p className="text-[9px] uppercase tracking-widest opacity-40 mb-1">Financial Goal</p>
+            <p className="font-bold">{financialGoal}</p>
+          </div>
+        )}
+      </div>
+
+      {/* MANDATE */}
+      {missionStatement && (
+        <div>
+          <SectionHeader label="Mandate" />
+          <p className="text-base serif leading-relaxed opacity-80">{missionStatement}</p>
+        </div>
+      )}
+
+      {/* BIBLE FOUNDATION */}
+      {biblicalFoundation?.length > 0 && (
+        <div>
+          <SectionHeader label="Bible Foundation" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {biblicalFoundation.map((b: any, i: number) => (
+              <div key={i} className="pl-3 border-l-2 border-black/10">
+                <p className="text-sm serif italic opacity-70">"{b.theme || b.reference || ''}"</p>
+                {b.scripture && <p className="text-[10px] uppercase tracking-wider opacity-30 mt-1">— {b.scripture}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* BIBLICAL MODELS */}
+      {biblicalModels?.length > 0 && (
+        <div>
+          <SectionHeader label="Biblical Models" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {biblicalModels.map((m: any, i: number) => (
+              <div key={i} className="bg-black/5 p-4 rounded">
+                <p className="font-bold text-sm mb-1">{m.figure}</p>
+                <p className="text-sm serif italic opacity-60">{m.attribute}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* CORE VALUES */}
+      {coreValues?.length > 0 && (
+        <div>
+          <SectionHeader label="Core Values" />
+          <div className="space-y-3">
+            {coreValues.map((v: any, i: number) => (
+              <div key={i} className="bg-black/5 p-3 rounded">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">{typeof v === 'string' ? v : v.value}</p>
+                {typeof v !== 'string' && v.description && <p className="text-sm opacity-60">{v.description}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* STRATEGIC PILLARS */}
+      {strategicPillars?.length > 0 && (
+        <div>
+          <SectionHeader label="Strategic Pillars" />
+          <div className="space-y-3">
+            {strategicPillars.map((p: any, i: number) => (
+              <div key={i} className="border-b border-black/5 pb-3">
+                <p className="text-[10px] font-bold uppercase tracking-wider mb-1">{typeof p === 'string' ? p : p.pillar}</p>
+                {typeof p !== 'string' && p.description && <p className="text-sm opacity-60">{p.description}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* TARGET IMPACT */}
+      {impactTargets && (
+        <div>
+          <SectionHeader label="Target Impact" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {impactTargets.individual && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Individual</p>
+                <p className="text-sm opacity-70">{impactTargets.individual}</p>
+              </div>
+            )}
+            {impactTargets.community && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Community</p>
+                <p className="text-sm opacity-70">{impactTargets.community}</p>
+              </div>
+            )}
+            {impactTargets.generational && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Generational</p>
+                <p className="text-sm opacity-70">{impactTargets.generational}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* KINGDOM PURPOSE */}
+      {futurePicture?.length > 0 && (
+        <div>
+          <SectionHeader label="Kingdom Purpose" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {futurePicture.map((item: string, i: number) => (
+              <p key={i} className="text-sm opacity-60">• {item}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* LIFE CONTEXT */}
+      {lifeContext && (
+        <div>
+          <SectionHeader label="Life Context" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {lifeContext.location && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Location</p>
+                <p className="text-sm opacity-70">{lifeContext.location}</p>
+              </div>
+            )}
+            {lifeContext.culture && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Culture</p>
+                <p className="text-sm opacity-70">{lifeContext.culture}</p>
+              </div>
+            )}
+            {lifeContext.timing && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Timing</p>
+                <p className="text-sm opacity-70">{lifeContext.timing}</p>
+              </div>
+            )}
+            {lifeContext.constraints && (
+              <div>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Constraints</p>
+                <p className="text-sm opacity-70">{lifeContext.constraints}</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* LONG TERM STEWARDSHIP */}
+      {longTerm?.length > 0 && (
+        <div>
+          <SectionHeader label="Long-Term Stewardship" />
+          <div className="space-y-2">
+            {longTerm.map((item: string, i: number) => (
+              <p key={i} className="text-sm opacity-60">• {item}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* RESOURCE MANAGEMENT */}
+      {resourceManagement && (
+        <div>
+          <SectionHeader label="Resource Management" />
+          <p className="text-sm opacity-70 bg-black/5 p-3 rounded">{resourceManagement}</p>
+        </div>
+      )}
+
+      {/* RISKS */}
+      {risks?.length > 0 && (
+        <div>
+          <SectionHeader label="Risks & Discernment Notes" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+            {risks.map((item: string, i: number) => (
+              <p key={i} className="text-sm opacity-60">• {item}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* DECLARATIONS */}
+      {declarations?.length > 0 && (
+        <div className="bg-black text-white p-8 rounded-2xl">
+          <p className="text-[10px] uppercase tracking-[0.4em] opacity-40 text-center mb-8">Declarations</p>
+          <div className="space-y-6">
+            {declarations.map((d: string, i: number) => (
+              <p key={i} className="text-base serif italic text-center leading-relaxed">"{d}"</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* PRAYER */}
+      {prayer && (
+        <div>
+          <SectionHeader label="Prayer of Surrender" />
+          <p className="text-base serif italic leading-relaxed opacity-70">{prayer}</p>
+        </div>
+      )}
+
+      {/* REFLECTION PROMPTS */}
+      {reflectionPrompts?.length > 0 && (
+        <div>
+          <SectionHeader label="Reflection Prompts" />
+          <div className="space-y-3">
+            {reflectionPrompts.map((r: string, i: number) => (
+              <p key={i} className="text-sm serif italic opacity-60 pl-3 border-l-2 border-black/10">{r}</p>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* NEXT STEPS — always last */}
+      {expectedImpact?.length > 0 && (
+        <div>
+          <SectionHeader label="Next Steps" />
+          <div className="space-y-4">
+            {expectedImpact.map((item: string, i: number) => (
+              <div key={i} className="flex gap-4">
+                <span className="text-2xl font-bold opacity-20">{i + 1}</span>
+                <p className="text-base opacity-70 leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+    </div>
+  </div>
+);
+}
   const [messages, setMessages] = useState<Message[]>(session.messages);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -2531,6 +2944,7 @@ const ProfilePage: React.FC<{ user: any, profile: any, lang: Language, setLang: 
           body: {
             action: "initialize",
             email: user.email,
+            user_id: user.id,
             amount: Math.round(amount * 100), // Convert to cents
             vision_id: "offering", // Special ID for general offerings
           },

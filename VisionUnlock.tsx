@@ -5,18 +5,22 @@ interface VisionUnlockProps {
   visionId: string | number;
   userEmail: string;
   onBack?: () => void;
+  onSuccess?: () => void; // ✅ To'lov muvaffaqiyatli bo'lganda chaqiriladi
   t: any;
 }
 
-const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack, t }) => {
+// Fixed exchange rate: 1 USD = 18 ZAR
+const USD_TO_ZAR_RATE = 18;
+
+const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack, onSuccess, t }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [amount, setAmount] = useState<number>(3);
 
   const handleUnlock = async () => {
     if (loading) return;
-    if (amount < 1) {
-      setError(t.errorGeneric || "Please enter a contribution of $1 or more.");
+    if (amount < 3) {
+      setError(t.minContribution || "Please enter a minimum contribution of $3.");
       return;
     }
     setLoading(true);
@@ -29,19 +33,69 @@ const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack
           body: {
             action: "initialize",
             email: userEmail,
-            amount: Math.round(amount * 100), // Convert to cents
+            amount: Math.round(amount * 100), // USD cents → Edge Function converts to ZAR
             vision_id: String(visionId),
           },
         }
       );
 
-      if (invokeError) throw new Error(t.initPaymentFailed || "We couldn’t start the payment. Please try again.");
-      if (!data?.data?.authorization_url) throw new Error(t.initPaymentFailed || "Payment gateway did not return a checkout link.");
+      if (invokeError) throw new Error(t.initPaymentFailed || "We couldn't start the payment. Please try again.");
+      if (!data?.data?.access_code) throw new Error(t.initPaymentFailed || "Payment gateway did not return an access code.");
+
+      const accessCode = data.data.access_code;
+      const reference = data.data.reference;
+
+      setLoading(false);
+
+      // Open Paystack popup
+      const PaystackPop = (window as any).PaystackPop;
+      const handler = PaystackPop.setup({
+        key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+        email: userEmail,
+        amount: Math.round(amount * 100 * USD_TO_ZAR_RATE), // ✅ USD cents → ZAR cents
+        currency: "ZAR",                                     // ✅ ZAR valyutasi
+        ref: reference,
+        access_code: accessCode,
+        onSuccess: async (transaction: any) => {
+          setLoading(true);
+          try {
+            const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+            const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+            const verifyResponse = await fetch(
+              `${supabaseUrl}/functions/v1/verify-paystack-payment`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                  "Authorization": `Bearer ${supabaseKey}`,
+                },
+                body: JSON.stringify({
+                  action: "verify",
+                  reference: transaction.reference,
+                  vision_id: String(visionId),
+                  amount: Math.round(amount * 100),
+                }),
+              }
+            );
+            const verifyData = await verifyResponse.json();
+            if (!verifyData.status) throw new Error(verifyData.message || t.verificationFailed);
+            // ✅ window.location.reload() o'rniga onSuccess chaqiriladi
+            if (onSuccess) onSuccess();
+          } catch (err: any) {
+            setLoading(false);
+            setError(err.message || t.verificationFailed);
+          }
+        },
+        onCancel: () => {
+          setError(t.paymentCancelled || "Payment was cancelled.");
+        },
+      });
 
       window.location.href = data.data.authorization_url;
+
     } catch (err: any) {
       setLoading(false);
-      setError(err.message || t.initPaymentFailed || "We couldn’t start the payment. Please try again.");
+      setError(err.message || t.initPaymentFailed || "We couldn't start the payment. Please try again.");
     }
   };
 
@@ -83,25 +137,26 @@ const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack
           <span className="text-[10px] uppercase tracking-[0.3em] opacity-30 font-bold mb-3">{t.contribute || "MY CONTRIBUTION"}</span>
           <div className="flex items-center gap-1 group">
             <span className="text-5xl font-bold tracking-tighter text-[#111111] opacity-30">$</span>
-            <input 
+            <input
               type="number"
-              min="1"
+              min="3"
               value={amount}
               onChange={(e) => setAmount(Math.max(0, parseFloat(e.target.value) || 0))}
               className="text-5xl font-bold tracking-tighter text-[#111111] bg-transparent border-none focus:ring-0 w-28 text-center"
             />
           </div>
+          <p className="text-[9px] uppercase tracking-widest opacity-20 font-bold mt-3">MINIMUM $3.00</p>
         </div>
 
         <div className="w-full space-y-4">
           <button
             onClick={handleUnlock}
-            disabled={amount < 1}
+            disabled={amount < 3}
             className="w-full bg-black text-white py-5 rounded-full text-[11px] uppercase tracking-[0.4em] font-bold shadow-xl shadow-black/10 hover:bg-black/80 transition-all active:scale-[0.98] disabled:opacity-30"
           >
             {t.paywallAction || "Unlock Vision"}
           </button>
-          
+
           {onBack && (
             <button
               onClick={onBack}
@@ -111,7 +166,7 @@ const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack
             </button>
           )}
         </div>
-        
+
         <p className="text-[8px] uppercase tracking-[0.3em] opacity-20 font-bold">SECURE PAYMENT VIA PAYSTACK</p>
       </div>
     </div>

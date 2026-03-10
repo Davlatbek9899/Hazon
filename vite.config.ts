@@ -6,8 +6,7 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
       server: {
-        port: 3000,
-        host: '0.0.0.0',
+        allowedHosts: ['ungritty-tonisha-nonmedical.ngrok-free.dev'],
       },
       plugins: [react()],
       define: {

@@ -1,11 +1,13 @@
+console.log("SUPABASE URL:", import.meta.env.VITE_SUPABASE_URL);
+console.log("SUPABASE KEY:", import.meta.env.VITE_SUPABASE_ANON_KEY);
 
 import { createClient } from '@supabase/supabase-js';
 
-export const supabaseUrl = 'https://hihspfadzevcdhqgixak.supabase.co';
-export const supabaseKey = 'sb_publishable_8rWpg_GtiWizqwM0mK_Wrw_bZL6eVF-';
+// 'as string' qo'shish shart, aks holda TypeScript 'undefined' deb xato beradi
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL as string;
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
 export const supabase = createClient(supabaseUrl, supabaseKey);
-
 export async function signInWithGoogle() {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
@@ -40,46 +42,24 @@ export async function signUpWithProfile(email, password, name) {
   return data.user;
 }
 
-export async function ensureUserProfile(user) {
+export async function ensureUserProfile(user: any) {
   if (!user) return;
-  
-  const { data, error } = await supabase
-    .from('app_users')
-    .select('id')
-    .eq('id', user.id)
-    .maybeSingle();
 
-  if (error || !data) {
-    const name = user.user_metadata?.full_name || user.email?.split('@')[0] || "Hazon User";
-    const { error: insertError } = await supabase.from('app_users').insert({
+  const name =
+    user.user_metadata?.full_name ||
+    user.email?.split("@")[0] ||
+    "Hazon User";
+
+  const { error } = await supabase
+    .from("app_users")
+    .upsert({
       id: user.id,
       full_name: name,
-      email: user.email
-    });
-    if (insertError) console.error("Profile creation error:", insertError);
-  }
+      email: user.email,
+    }, { onConflict: 'id' });
+
+  if (error) console.error("Profile creation error:", error);
 }
-
-export async function createVisionInDB(title, status, language?: string) {
-  const { data: { user }, error: authError } = await supabase.auth.getUser();
-  if (authError || !user) throw new Error("User session expired.");
-
-  const { data, error } = await supabase
-    .from('visions')
-    .insert({ 
-      user_id: user.id, 
-      title: title || 'New Vision', 
-      status: status,
-      chat_session: [],
-      language: language
-    })
-    .select()
-    .single();
-    
-  if (error) throw error;
-  return data;
-}
-
 export async function updateVisionChatSession(visionId: string, messages: any[]) {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) throw new Error("No authenticated user session.");
@@ -94,4 +74,24 @@ export async function updateVisionChatSession(visionId: string, messages: any[])
     console.error("Failed to sync chat history to Supabase:", error);
     throw error;
   }
+}
+
+export async function createVisionInDB(title: string, status: string, language?: string) {
+  const { data: { user }, error: authError } = await supabase.auth.getUser();
+  if (authError || !user) throw new Error("User session expired.");
+
+  const { data, error } = await supabase
+    .from("visions")
+    .insert({
+      user_id: user.id,
+      title: title || "New Vision",
+      status,
+      chat_session: [],
+      language: language ?? null,
+    })
+    .select()
+    .single();
+
+  if (error) throw error;
+  return data;
 }

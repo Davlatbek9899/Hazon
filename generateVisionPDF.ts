@@ -237,12 +237,12 @@ export const generateVisionPDF = async (vision: any) => {
 
 <!-- PAGE 1: COVER -->
 <div class="page">
-  <div style="text-align:center; margin-bottom:20px;">
+  <div style="text-align:center; margin-bottom:6px;">
     <div class="logo">Hazon</div>
+    <div class="tagline" style="text-align:center; margin-top:6px; margin-bottom:0;">A CLEAR VISION.</div>
   </div>
-    <div class="divider"></div>
-    <div class="tagline" style="text-align:center; margin-bottom:8px;">A Clear Vision.</div>
-    <div class="doc-label">A Hazon Alignment Document</div>
+  <div class="divider" style="margin-top:14px; margin-bottom:14px;"></div>
+  <div class="doc-label">A Hazon Alignment Document</div>
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding-bottom:36px;">
     <h1 class="title">${title}</h1>
     ${subtitle ? `<div class="subtitle">${subtitle}</div>` : ''}
@@ -271,12 +271,12 @@ export const generateVisionPDF = async (vision: any) => {
   ${biblicalFoundation.length > 0 ? `
   <div class="section">
     <div class="section-label">BIBLE FOUNDATION</div>
-    <div class="two-col">
+    <div style="display:flex;flex-direction:column;gap:18px;">
       ${biblicalFoundation.map(b => `
-        <div class="scripture-item">
-          <p class="scripture-text">"${b.theme || ''}"</p>
-          ${b.scripture ? `<span class="scripture-ref">— ${b.scripture}</span>` : ''}
-          ${b.explanation ? `<p style="font-family:'Playfair Display',serif;font-size:10.5px;color:#666;line-height:1.5;margin-top:4px;">${b.explanation}</p>` : ''}
+        <div style="padding-left:14px;border-left:2px solid #c8c4be;">
+          ${b.scripture ? `<span style="font-family:'Lato',sans-serif;font-size:7.5px;letter-spacing:2px;color:#aaa;text-transform:uppercase;">${b.scripture}</span><br>` : ''}
+          <p style="font-family:'Playfair Display',serif;font-size:12px;font-style:italic;color:#333;line-height:1.7;margin-top:3px;margin-bottom:${b.explanation ? '6px' : '0'};">"${b.theme || ''}"</p>
+          ${b.explanation ? `<p style="font-family:'Lato',sans-serif;font-size:10px;color:#666;line-height:1.65;">${b.explanation}</p>` : ''}
         </div>
       `).join('')}
     </div>
@@ -285,11 +285,12 @@ export const generateVisionPDF = async (vision: any) => {
   ${biblicalModels.length > 0 ? `
   <div class="section">
     <div class="section-label">BIBLICAL MODELS</div>
-    <div class="three-col">
+    <div class="two-col" style="gap:16px;">
       ${biblicalModels.map((m: any) => `
-        <div class="model-card">
-          <div class="model-name">${m.figure}</div>
-          <div class="model-attr">${m.attribute}</div>
+        <div class="model-card" style="padding:14px 16px;">
+          <div class="model-name" style="font-size:13px;font-weight:500;margin-bottom:3px;">${m.figure}</div>
+          <div class="model-attr" style="font-size:10px;color:#888;font-style:normal;font-family:'Lato',sans-serif;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:6px;">${m.attribute}</div>
+          ${m.vision_connection ? `<div style="font-family:'Playfair Display',serif;font-size:10.5px;font-style:italic;color:#555;line-height:1.6;border-top:0.5px solid #ddd;padding-top:6px;">${m.vision_connection}</div>` : ''}
         </div>
       `).join('')}
     </div>
@@ -412,14 +413,14 @@ ${declarations.length > 0 ? `
     <div class="tagline">A Clear Vision.</div>
   </div>
   <div class="divider divider-dark"></div>
-  <div class="declarations-label" style="margin-top:14px;">Declarations</div>
-
   <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+    <div class="declarations-label">Declarations</div>
     ${declarations.map((d: string) => `
       <div class="declaration-item">
         <p class="declaration-text">"${d}"</p>
       </div>
     `).join('')}
+  </div>
   </div>
 
   <div class="footer footer-dark">
@@ -428,35 +429,43 @@ ${declarations.length > 0 ? `
   </div>
 </div>` : ''}
 
-<!-- PAGE 6: PRAYER + REFLECTION -->
-${(prayer || reflectionPrompts.length > 0) ? `
+<!-- PAGE 6: PRAYER (own page, larger font) -->
+${prayer ? `
 <div class="page">
-  <div class="two-col">
-    ${prayer ? `
-    <div>
-      <div class="section-label">PRAYER OF SURRENDER</div>
-      <p class="prayer-text">${prayer}</p>
-    </div>` : '<div></div>'}
-
-    <div>
-      ${reflectionPrompts.length > 0 ? `
-      <div class="section-label">REFLECTION PROMPTS</div>
-      ${reflectionPrompts.map((r: string) => `
-        <p class="reflection-item">${r}</p>
-      `).join('')}` : ''}
-
-      ${biblicalFoundation.length > 0 ? `
-      <div style="margin-top:22px;">
-        <div class="section-label">ANCHOR SCRIPTURES</div>
-        ${biblicalFoundation.slice(0, 3).map((b: any) => `
-          <p style="font-family:'Playfair Display',serif;font-size:11.5px;font-style:italic;color:#555;line-height:1.65;margin-bottom:10px;">
-            ${b.scripture ? `<span style="font-family:'Lato',sans-serif;font-style:normal;font-size:8px;letter-spacing:1px;color:#aaa;">${b.scripture}</span><br>` : ''}"${b.theme || ''}"
-          </p>
-        `).join('')}
-      </div>` : ''}
-    </div>
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding: 20px 0;">
+    <div class="section-label" style="margin-bottom:28px;">PRAYER OF SURRENDER</div>
+    <p style="font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:#333;line-height:2.1;max-width:580px;">${prayer}</p>
   </div>
+  <div class="footer">
+    <span class="footer-text">Hazon | A Clear Vision</span>
+    <span class="footer-text">${year}</span>
+  </div>
+</div>` : ''}
 
+<!-- PAGE 7: REFLECTION PROMPTS + ANCHOR SCRIPTURES (own page, after prayer) -->
+${(reflectionPrompts.length > 0 || biblicalFoundation.length > 0) ? `
+<div class="page">
+  <div style="flex:1; display:flex; flex-direction:column; padding: 10px 0;">
+    ${reflectionPrompts.length > 0 ? `
+    <div class="section" style="margin-bottom:36px;">
+      <div class="section-label" style="margin-bottom:20px;">REFLECTION PROMPTS</div>
+      ${reflectionPrompts.map((r: string) => `
+        <p class="reflection-item" style="font-size:13px; margin-bottom:16px;">${r}</p>
+      `).join('')}
+    </div>` : ''}
+
+    ${biblicalFoundation.length > 0 ? `
+    <div class="section">
+      <div class="section-label" style="margin-bottom:20px;">ANCHOR SCRIPTURES</div>
+      ${biblicalFoundation.map((b: any) => `
+        <div class="scripture-item" style="margin-bottom:18px; padding-left:14px; border-left:2px solid #c8c4be;">
+          ${b.scripture ? `<span style="font-family:'Lato',sans-serif;font-style:normal;font-size:8px;letter-spacing:1.5px;color:#aaa;text-transform:uppercase;">${b.scripture}</span><br>` : ''}
+          <p style="font-family:'Playfair Display',serif;font-size:12.5px;font-style:italic;color:#444;line-height:1.7;margin-top:4px;">"${b.theme || ''}"</p>
+          ${b.explanation ? `<p style="font-family:'Lato',sans-serif;font-size:10px;color:#777;line-height:1.6;margin-top:6px;">${b.explanation}</p>` : ''}
+        </div>
+      `).join('')}
+    </div>` : ''}
+  </div>
   <div class="footer">
     <span class="footer-text">Hazon | A Clear Vision</span>
     <span class="footer-text">${year}</span>

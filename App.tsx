@@ -107,7 +107,46 @@ const translations: Record<Language, any> = {
     contribute: "Contribute",
     supportDesc: "Your support helps us keep Hazon running, allowing us to help seekers and believers worldwide. Every contribution is an investment in the mission of bringing God-centered clarity to those seeking direction.",
     amount: "AMOUNT",
-    minContribution: "Please enter a contribution of $1 or more."
+    minContribution: "Please enter a contribution of $1 or more.",
+    sectionMandate: "Mandate",
+    sectionBibleFoundation: "Bible Foundation",
+    sectionBiblicalModels: "Biblical Models",
+    sectionCoreValues: "Core Values",
+    sectionStrategicPillars: "Strategic Pillars",
+    sectionTargetImpact: "Target Impact",
+    sectionKingdomPurpose: "Kingdom Purpose",
+    sectionLifeContext: "Life Context",
+    sectionLongTerm: "Long-Term Stewardship",
+    sectionResourceMgmt: "Resource Management",
+    sectionRisks: "Risks & Discernment Notes",
+    sectionDeclarations: "Declarations",
+    sectionPrayer: "Prayer of Surrender",
+    sectionReflection: "Reflection Prompts",
+    sectionNextSteps: "Next Steps",
+    labelFinancialGoal: "Financial Goal",
+    labelIndividual: "Individual",
+    labelCommunity: "Community",
+    labelGenerational: "Generational",
+    labelLocation: "Location",
+    labelCulture: "Culture",
+    labelTiming: "Timing",
+    labelConstraints: "Constraints",
+    backToLibrary: "← Library",
+    saveAsPDF: "↓ Save as PDF",
+    restoringLibrary: "RESTORING LIBRARY...",
+    alwaysWelcome: "YOU ARE ALWAYS WELCOME HERE.",
+    generationFailed: "Generation Failed",
+    clarityBeginsWith: "True clarity begins with",
+    him: "Him",
+    clarityBlackBoxPara: "True clarity is not discovered by striving harder, but by listening more closely to the Spirit of Truth. Scripture teaches that vision is not formed by impulse, but revealed through God's wisdom.",
+    proverbs2918label: "Proverbs 29:18",
+    proverbs2918quote: "\"Where there is no vision, the people perish.\"",
+    proverbs2918desc: "God's Word makes it clear: without kingdom aligned vision, direction is lost and purpose fades. Vision is not optional, it is essential for a life aligned with Him.",
+    proverbs356label: "Proverbs 3:5–6",
+    proverbs356quote: "\"Trust in the Lord with all your heart...\"",
+    proverbs356desc: "True direction begins when we release our own certainty and submit our plans to God's leading. He will make straight your paths when you acknowledge Him in all your ways.",
+    hazonMission: "Hazon exists to quiet the noise, anchor discernment in Scripture, and help you receive vision that is clear, God-centered, and meant to be lived out with faith and wisdom.",
+    inJesusName: "In the name of Jesus, I declare"
   },
   es: {
     login: "INICIAR SESIÓN", signup: "REGISTRARSE", emailLabel: "Email", passwordLabel: "Contraseña", nameLabel: "Nombre",
@@ -204,7 +243,46 @@ const translations: Record<Language, any> = {
     contribute: "Contribuir",
     supportDesc: "Tu apoyo nos ayuda a mantener Hazon en funcionamiento, permitiéndonos ayudar a buscadores y creyentes en todo el mundo. Cada contribución es una inversión en la misión de brindar claridad centrada en Dios a quienes buscan dirección.",
     amount: "CANTIDAD",
-    minContribution: "Por favor, ingresa una contribución de $1 o más."
+    minContribution: "Por favor, ingresa una contribución de $1 o más.",
+    sectionMandate: "Mandato",
+    sectionBibleFoundation: "Fundamento Bíblico",
+    sectionBiblicalModels: "Modelos Bíblicos",
+    sectionCoreValues: "Valores Fundamentales",
+    sectionStrategicPillars: "Pilares Estratégicos",
+    sectionTargetImpact: "Impacto Objetivo",
+    sectionKingdomPurpose: "Propósito del Reino",
+    sectionLifeContext: "Contexto de Vida",
+    sectionLongTerm: "Gestión a Largo Plazo",
+    sectionResourceMgmt: "Gestión de Recursos",
+    sectionRisks: "Riesgos y Notas de Discernimiento",
+    sectionDeclarations: "Declaraciones",
+    sectionPrayer: "Oración de Rendición",
+    sectionReflection: "Reflexiones",
+    sectionNextSteps: "Próximos Pasos",
+    labelFinancialGoal: "Meta Financiera",
+    labelIndividual: "Individual",
+    labelCommunity: "Comunidad",
+    labelGenerational: "Generacional",
+    labelLocation: "Ubicación",
+    labelCulture: "Cultura",
+    labelTiming: "Tiempo",
+    labelConstraints: "Limitaciones",
+    backToLibrary: "← Biblioteca",
+    saveAsPDF: "↓ Guardar como PDF",
+    restoringLibrary: "RESTAURANDO BIBLIOTECA...",
+    alwaysWelcome: "SIEMPRE ERES BIENVENIDO AQUÍ.",
+    generationFailed: "Generación Fallida",
+    clarityBeginsWith: "La verdadera claridad comienza con",
+    him: "Él",
+    clarityBlackBoxPara: "La verdadera claridad no se descubre esforzándose más, sino escuchando más de cerca al Espíritu de Verdad.",
+    proverbs2918label: "Proverbios 29:18",
+    proverbs2918quote: "\"Donde no hay visión, el pueblo perece.\"",
+    proverbs2918desc: "La Palabra de Dios lo aclara: sin visión alineada con el reino, se pierde la dirección y el propósito se desvanece.",
+    proverbs356label: "Proverbios 3:5–6",
+    proverbs356quote: "\"Confía en el Señor con todo tu corazón...\"",
+    proverbs356desc: "La verdadera dirección comienza cuando soltamos nuestra propia certeza y sometemos nuestros planes al liderazgo de Dios.",
+    hazonMission: "Hazon existe para acallar el ruido, anclar el discernimiento en las Escrituras y ayudarte a recibir una visión clara.",
+    inJesusName: "En el nombre de Jesús, declaro"
   },
   fr: {
     login: "CONNEXION", signup: "S'INSCRIRE", emailLabel: "Email", passwordLabel: "Mot de passe", nameLabel: "Nom",
@@ -301,7 +379,46 @@ const translations: Record<Language, any> = {
     contribute: "Contribuer",
     supportDesc: "Votre soutien nous aide à faire fonctionner Hazon, nous permettant d'aider les chercheurs et les croyants du monde entier. Chaque contribution est un investissement dans la mission d'apporter une clarté centrée sur Dieu à ceux qui cherchent une direction.",
     amount: "MONTANT",
-    minContribution: "Veuillez entrer une contribution de 1 $ ou plus."
+    minContribution: "Veuillez entrer une contribution de 1 $ ou plus.",
+    sectionMandate: "Mandat",
+    sectionBibleFoundation: "Fondement Biblique",
+    sectionBiblicalModels: "Modèles Bibliques",
+    sectionCoreValues: "Valeurs Fondamentales",
+    sectionStrategicPillars: "Piliers Stratégiques",
+    sectionTargetImpact: "Impact Ciblé",
+    sectionKingdomPurpose: "Objectif du Royaume",
+    sectionLifeContext: "Contexte de Vie",
+    sectionLongTerm: "Gestion à Long Terme",
+    sectionResourceMgmt: "Gestion des Ressources",
+    sectionRisks: "Risques et Notes de Discernement",
+    sectionDeclarations: "Déclarations",
+    sectionPrayer: "Prière d'Abandon",
+    sectionReflection: "Questions de Réflexion",
+    sectionNextSteps: "Prochaines Étapes",
+    labelFinancialGoal: "Objectif Financier",
+    labelIndividual: "Individuel",
+    labelCommunity: "Communauté",
+    labelGenerational: "Générationnel",
+    labelLocation: "Lieu",
+    labelCulture: "Culture",
+    labelTiming: "Calendrier",
+    labelConstraints: "Contraintes",
+    backToLibrary: "← Bibliothèque",
+    saveAsPDF: "↓ Enregistrer en PDF",
+    restoringLibrary: "RESTAURATION...",
+    alwaysWelcome: "VOUS ÊTES TOUJOURS LE BIENVENU ICI.",
+    generationFailed: "Génération Échouée",
+    clarityBeginsWith: "La vraie clarté commence avec",
+    him: "Lui",
+    clarityBlackBoxPara: "La vraie clarté ne se découvre pas en s'efforçant davantage, mais en écoutant plus attentivement l'Esprit de Vérité.",
+    proverbs2918label: "Proverbes 29:18",
+    proverbs2918quote: "\"Là où il n'y a pas de vision, le peuple périt.\"",
+    proverbs2918desc: "La Parole de Dieu est claire: sans vision alignée sur le royaume, la direction est perdue et le but s'efface.",
+    proverbs356label: "Proverbes 3:5–6",
+    proverbs356quote: "\"Fais confiance à l'Éternel de tout ton cœur...\"",
+    proverbs356desc: "La vraie direction commence quand nous abandonnons notre propre certitude et soumettons nos plans à la conduite de Dieu.",
+    hazonMission: "Hazon existe pour apaiser le bruit, ancrer le discernement dans les Écritures et vous aider à recevoir une vision claire.",
+    inJesusName: "Au nom de Jésus, je déclare"
   },
   pt: {
     login: "ENTRAR", signup: "CADASTRAR", emailLabel: "E-mail", passwordLabel: "Senha", nameLabel: "Nome",
@@ -398,7 +515,46 @@ const translations: Record<Language, any> = {
     contribute: "Contribuir",
     supportDesc: "Seu apoio nos ajuda a manter o Hazon funcionando, permitindo-nos ajudar buscadores e crentes em todo o mundo. Cada contribuição é um investimento na missão de trazer clareza centrada em Deus para aqueles que buscam direção.",
     amount: "QUANTIA",
-    minContribution: "Por favor, insira uma contribuição de $1 ou mais."
+    minContribution: "Por favor, insira uma contribuição de $1 ou mais.",
+    sectionMandate: "Mandato",
+    sectionBibleFoundation: "Fundamento Bíblico",
+    sectionBiblicalModels: "Modelos Bíblicos",
+    sectionCoreValues: "Valores Fundamentais",
+    sectionStrategicPillars: "Pilares Estratégicos",
+    sectionTargetImpact: "Impacto Alvo",
+    sectionKingdomPurpose: "Propósito do Reino",
+    sectionLifeContext: "Contexto de Vida",
+    sectionLongTerm: "Gestão a Longo Prazo",
+    sectionResourceMgmt: "Gestão de Recursos",
+    sectionRisks: "Riscos e Notas de Discernimento",
+    sectionDeclarations: "Declarações",
+    sectionPrayer: "Oração de Rendição",
+    sectionReflection: "Reflexões",
+    sectionNextSteps: "Próximos Passos",
+    labelFinancialGoal: "Meta Financeira",
+    labelIndividual: "Individual",
+    labelCommunity: "Comunidade",
+    labelGenerational: "Geracional",
+    labelLocation: "Localização",
+    labelCulture: "Cultura",
+    labelTiming: "Tempo",
+    labelConstraints: "Restrições",
+    backToLibrary: "← Biblioteca",
+    saveAsPDF: "↓ Salvar como PDF",
+    restoringLibrary: "RESTAURANDO...",
+    alwaysWelcome: "VOCÊ É SEMPRE BEM-VINDO AQUI.",
+    generationFailed: "Falha na Geração",
+    clarityBeginsWith: "A verdadeira clareza começa com",
+    him: "Ele",
+    clarityBlackBoxPara: "A verdadeira clareza não é descoberta se esforçando mais, mas ouvindo mais atentamente o Espírito da Verdade.",
+    proverbs2918label: "Provérbios 29:18",
+    proverbs2918quote: "\"Onde não há visão, o povo perece.\"",
+    proverbs2918desc: "A Palavra de Deus deixa claro: sem visão alinhada ao reino, a direção se perde e o propósito desaparece.",
+    proverbs356label: "Provérbios 3:5–6",
+    proverbs356quote: "\"Confie no Senhor de todo o seu coração...\"",
+    proverbs356desc: "A verdadeira direção começa quando largamos nossa própria certeza e submetemos nossos planos à liderança de Deus.",
+    hazonMission: "Hazon existe para silenciar o ruído, ancorar o discernimento nas Escrituras e ajudá-lo a receber uma visão clara.",
+    inJesusName: "Em nome de Jesus, eu declaro"
   },
   it: {
     login: "ACCEDI", signup: "REGISTRATI", emailLabel: "Email", passwordLabel: "Password", nameLabel: "Nome",
@@ -495,7 +651,46 @@ const translations: Record<Language, any> = {
     contribute: "Contribuisci",
     supportDesc: "Il tuo supporto ci aiuta a mantenere operativo Hazon, permettendoci di aiutare cercatori e credenti in tutto il mondo. Ogni contributo è un investimento nella missione di portare chiarezza centrata su Dio a coloro che cercano direzione.",
     amount: "IMPORTO",
-    minContribution: "Inserisci un contributo di $1 o più."
+    minContribution: "Inserisci un contributo di $1 o più.",
+    sectionMandate: "Mandato",
+    sectionBibleFoundation: "Fondamento Biblico",
+    sectionBiblicalModels: "Modelli Biblici",
+    sectionCoreValues: "Valori Fondamentali",
+    sectionStrategicPillars: "Pilastri Strategici",
+    sectionTargetImpact: "Impatto Previsto",
+    sectionKingdomPurpose: "Scopo del Regno",
+    sectionLifeContext: "Contesto di Vita",
+    sectionLongTerm: "Gestione a Lungo Termine",
+    sectionResourceMgmt: "Gestione delle Risorse",
+    sectionRisks: "Rischi e Note di Discernimento",
+    sectionDeclarations: "Dichiarazioni",
+    sectionPrayer: "Preghiera di Resa",
+    sectionReflection: "Riflessioni",
+    sectionNextSteps: "Prossimi Passi",
+    labelFinancialGoal: "Obiettivo Finanziario",
+    labelIndividual: "Individuale",
+    labelCommunity: "Comunità",
+    labelGenerational: "Generazionale",
+    labelLocation: "Posizione",
+    labelCulture: "Cultura",
+    labelTiming: "Tempistica",
+    labelConstraints: "Vincoli",
+    backToLibrary: "← Libreria",
+    saveAsPDF: "↓ Salva come PDF",
+    restoringLibrary: "RIPRISTINO...",
+    alwaysWelcome: "SEI SEMPRE IL BENVENUTO QUI.",
+    generationFailed: "Generazione Fallita",
+    clarityBeginsWith: "La vera chiarezza inizia con",
+    him: "Lui",
+    clarityBlackBoxPara: "La vera chiarezza non si scopre sforzandosi di più, ma ascoltando più attentamente lo Spirito di Verità.",
+    proverbs2918label: "Proverbi 29:18",
+    proverbs2918quote: "\"Dove non c'è visione, il popolo perisce.\"",
+    proverbs2918desc: "La Parola di Dio è chiara: senza visione allineata al regno, la direzione si perde e lo scopo svanisce.",
+    proverbs356label: "Proverbi 3:5–6",
+    proverbs356quote: "\"Confida nel Signore con tutto il tuo cuore...\"",
+    proverbs356desc: "La vera direzione inizia quando lasciamo andare la nostra certezza e sottomettiamo i nostri piani alla guida di Dio.",
+    hazonMission: "Hazon esiste per silenziare il rumore, ancorare il discernimento nelle Scritture e aiutarti a ricevere una visione chiara.",
+    inJesusName: "Nel nome di Gesù, dichiaro"
   },
   de: {
     login: "ANMELDEN", signup: "REGISTRIEREN", emailLabel: "E-Mail", passwordLabel: "Passwort", nameLabel: "Name",
@@ -592,7 +787,46 @@ const translations: Record<Language, any> = {
     contribute: "Beitragen",
     supportDesc: "Ihre Unterstützung hilft uns, Hazon am Laufen zu halten, und ermöglicht es uns, Suchenden und Gläubigen weltweit zu helfen. Jeder Beitrag ist eine Investition in die Mission, denjenigen, die Richtung suchen, gottzentrierte Klarheit zu bringen.",
     amount: "BETRAG",
-    minContribution: "Bitte geben Sie einen Beitrag von 1 $ oder mehr ein."
+    minContribution: "Bitte geben Sie einen Beitrag von 1 $ oder mehr ein.",
+    sectionMandate: "Mandat",
+    sectionBibleFoundation: "Biblisches Fundament",
+    sectionBiblicalModels: "Biblische Vorbilder",
+    sectionCoreValues: "Kernwerte",
+    sectionStrategicPillars: "Strategische Säulen",
+    sectionTargetImpact: "Zielwirkung",
+    sectionKingdomPurpose: "Reichszweck",
+    sectionLifeContext: "Lebenskontext",
+    sectionLongTerm: "Langfristige Verwaltung",
+    sectionResourceMgmt: "Ressourcenmanagement",
+    sectionRisks: "Risiken & Unterscheidungshinweise",
+    sectionDeclarations: "Erklärungen",
+    sectionPrayer: "Gebet der Hingabe",
+    sectionReflection: "Reflexionsfragen",
+    sectionNextSteps: "Nächste Schritte",
+    labelFinancialGoal: "Finanzielles Ziel",
+    labelIndividual: "Individuell",
+    labelCommunity: "Gemeinschaft",
+    labelGenerational: "Generationell",
+    labelLocation: "Ort",
+    labelCulture: "Kultur",
+    labelTiming: "Zeitpunkt",
+    labelConstraints: "Einschränkungen",
+    backToLibrary: "← Bibliothek",
+    saveAsPDF: "↓ Als PDF speichern",
+    restoringLibrary: "BIBLIOTHEK WIRD WIEDERHERGESTELLT...",
+    alwaysWelcome: "SIE SIND HIER IMMER WILLKOMMEN.",
+    generationFailed: "Generierung Fehlgeschlagen",
+    clarityBeginsWith: "Wahre Klarheit beginnt mit",
+    him: "Ihm",
+    clarityBlackBoxPara: "Wahre Klarheit wird nicht durch mehr Anstrengung entdeckt, sondern durch genaueres Zuhören auf den Geist der Wahrheit.",
+    proverbs2918label: "Sprüche 29:18",
+    proverbs2918quote: "\"Wo keine Offenbarung ist, wird das Volk wild.\"",
+    proverbs2918desc: "Gottes Wort macht es klar: Ohne am Reich ausgerichtete Vision geht die Richtung verloren und der Zweck verblasst.",
+    proverbs356label: "Sprüche 3:5–6",
+    proverbs356quote: "\"Vertraue dem HERRN von ganzem Herzen...\"",
+    proverbs356desc: "Wahre Richtung beginnt, wenn wir unsere eigene Gewissheit loslassen und unsere Pläne Gottes Führung unterwerfen.",
+    hazonMission: "Hazon existiert, um den Lärm zu stillen, Unterscheidung in der Schrift zu verankern und Ihnen zu helfen, eine klare Vision zu empfangen.",
+    inJesusName: "Im Namen Jesu erkläre ich"
   },
   nl: {
     login: "INLOGGEN", signup: "REGISTREREN", emailLabel: "E-mail", passwordLabel: "Wachtwoord", nameLabel: "Naam",
@@ -689,7 +923,46 @@ const translations: Record<Language, any> = {
     contribute: "Bijdragen",
     supportDesc: "Uw steun helpt ons Hazon draaiende te houden, waardoor we zoekers en gelovigen wereldwijd kunnen helpen. Elke bijdrage is een investering in de missie om godgerichte helderheid te brengen aan degenen die richting zoeken.",
     amount: "BEDRAG",
-    minContribution: "Voer een bijdrage van $1 of meer in."
+    minContribution: "Voer een bijdrage van $1 of meer in.",
+    sectionMandate: "Mandaat",
+    sectionBibleFoundation: "Bijbels Fundament",
+    sectionBiblicalModels: "Bijbelse Modellen",
+    sectionCoreValues: "Kernwaarden",
+    sectionStrategicPillars: "Strategische Pijlers",
+    sectionTargetImpact: "Beoogde Impact",
+    sectionKingdomPurpose: "Koninkrijksdoel",
+    sectionLifeContext: "Levenscontext",
+    sectionLongTerm: "Langetermijnbeheer",
+    sectionResourceMgmt: "Resourcebeheer",
+    sectionRisks: "Risico's & Onderscheidingsnotities",
+    sectionDeclarations: "Verklaringen",
+    sectionPrayer: "Gebed van Overgave",
+    sectionReflection: "Reflectievragen",
+    sectionNextSteps: "Volgende Stappen",
+    labelFinancialGoal: "Financieel Doel",
+    labelIndividual: "Individueel",
+    labelCommunity: "Gemeenschap",
+    labelGenerational: "Generationeel",
+    labelLocation: "Locatie",
+    labelCulture: "Cultuur",
+    labelTiming: "Timing",
+    labelConstraints: "Beperkingen",
+    backToLibrary: "← Bibliotheek",
+    saveAsPDF: "↓ Opslaan als PDF",
+    restoringLibrary: "BIBLIOTHEEK HERSTELLEN...",
+    alwaysWelcome: "U BENT HIER ALTIJD WELKOM.",
+    generationFailed: "Generatie Mislukt",
+    clarityBeginsWith: "Ware helderheid begint met",
+    him: "Hem",
+    clarityBlackBoxPara: "Ware helderheid wordt niet ontdekt door harder te streven, maar door nauwer te luisteren naar de Geest van de Waarheid.",
+    proverbs2918label: "Spreuken 29:18",
+    proverbs2918quote: "\"Waar geen visioen is, verwildert het volk.\"",
+    proverbs2918desc: "Gods Woord maakt het duidelijk: zonder op het koninkrijk gerichte visie gaat de richting verloren en vervaagt het doel.",
+    proverbs356label: "Spreuken 3:5–6",
+    proverbs356quote: "\"Vertrouw op de HEERE met heel uw hart...\"",
+    proverbs356desc: "Ware richting begint wanneer we onze eigen zekerheid loslaten en onze plannen onderwerpen aan Gods leiding.",
+    hazonMission: "Hazon bestaat om het lawaai te stillen, onderscheiding te verankeren in de Schrift en u te helpen een heldere visie te ontvangen.",
+    inJesusName: "In de naam van Jezus verklaar ik"
   },
   ar: {
     login: "تسجيل الدخول", signup: "إنشاء حساب", emailLabel: "البريد الإلكتروني", passwordLabel: "كلمة المرور", nameLabel: "الاسم",
@@ -783,7 +1056,48 @@ const translations: Record<Language, any> = {
     language: "اللغة",
     supportHazon: "دعم هازون",
     improvementSuggestions: "اقتراحات التحسين",
-    contribute: "ساهم"
+    contribute: "ساهم",
+    sectionMandate: "الرسالة",
+    sectionBibleFoundation: "الأساس الكتابي",
+    sectionBiblicalModels: "النماذج الكتابية",
+    sectionCoreValues: "القيم الأساسية",
+    sectionStrategicPillars: "الركائز الاستراتيجية",
+    sectionTargetImpact: "الأثر المستهدف",
+    sectionKingdomPurpose: "غرض الملكوت",
+    sectionLifeContext: "سياق الحياة",
+    sectionLongTerm: "الإدارة طويلة المدى",
+    sectionResourceMgmt: "إدارة الموارد",
+    sectionRisks: "المخاطر وملاحظات التمييز",
+    sectionDeclarations: "الإعلانات",
+    sectionPrayer: "صلاة الاستسلام",
+    sectionReflection: "أسئلة التأمل",
+    sectionNextSteps: "الخطوات القادمة",
+    labelFinancialGoal: "الهدف المالي",
+    labelIndividual: "فردي",
+    labelCommunity: "مجتمع",
+    labelGenerational: "جيلي",
+    labelLocation: "الموقع",
+    labelCulture: "الثقافة",
+    labelTiming: "التوقيت",
+    labelConstraints: "القيود",
+    backToLibrary: "← المكتبة",
+    saveAsPDF: "↓ حفظ كـ PDF",
+    restoringLibrary: "جارٍ استعادة المكتبة...",
+    alwaysWelcome: "أنت دائماً مرحب بك هنا.",
+    generationFailed: "فشل الإنشاء",
+    clarityBeginsWith: "الوضوح الحقيقي يبدأ بـ",
+    him: "به",
+    clarityBlackBoxPara: "الوضوح الحقيقي لا يُكتشف بالمجاهدة أكثر، بل بالاستماع عن كثب لروح الحق.",
+    proverbs2918label: "أمثال 29:18",
+    proverbs2918quote: "\"بلا رؤية يجمح الشعب.\"",
+    proverbs2918desc: "كلمة الله واضحة: بدون رؤية مُوجَّهة بالملكوت، تضيع الاتجاهات ويتلاشى الغرض.",
+    proverbs356label: "أمثال 3:5–6",
+    proverbs356quote: "\"ثق بالرب بكل قلبك...\"",
+    proverbs356desc: "الاتجاه الحقيقي يبدأ حين نترك يقيننا الخاص ونُسلّم خططنا لقيادة الله.",
+    hazonMission: "يوجد هازون لإسكات الضوضاء، وتأسيس التمييز في الكتاب المقدس، ومساعدتك على تلقي رؤية واضحة.",
+    inJesusName: "باسم يسوع، أعلن",
+    amount: "المبلغ",
+    minContribution: "الرجاء إدخال مساهمة بقيمة 1 دولار أو أكثر."
   },
   ru: {
     login: "ВОЙТИ", signup: "РЕГИСТРАЦИЯ", emailLabel: "Email", passwordLabel: "Пароль", nameLabel: "Имя",
@@ -880,7 +1194,46 @@ const translations: Record<Language, any> = {
     contribute: "Внести вклад",
     supportDesc: "Ваша поддержка помогает нам поддерживать работу Hazon, позволяя нам помогать искателям и верующим по всему миру. Каждый вклад — это инвестиция в миссию несения богоцентричной ясности тем, кто ищет направление.",
     amount: "СУММА",
-    minContribution: "Пожалуйста, введите сумму пожертвования от 1 доллара или больше."
+    minContribution: "Пожалуйста, введите сумму пожертвования от 1 доллара или больше.",
+    sectionMandate: "Мандат",
+    sectionBibleFoundation: "Библейское Основание",
+    sectionBiblicalModels: "Библейские Модели",
+    sectionCoreValues: "Основные Ценности",
+    sectionStrategicPillars: "Стратегические Опоры",
+    sectionTargetImpact: "Целевое Воздействие",
+    sectionKingdomPurpose: "Цель Царства",
+    sectionLifeContext: "Жизненный Контекст",
+    sectionLongTerm: "Долгосрочное Управление",
+    sectionResourceMgmt: "Управление Ресурсами",
+    sectionRisks: "Риски и Заметки о Различении",
+    sectionDeclarations: "Декларации",
+    sectionPrayer: "Молитва Предания",
+    sectionReflection: "Вопросы для Размышления",
+    sectionNextSteps: "Следующие Шаги",
+    labelFinancialGoal: "Финансовая Цель",
+    labelIndividual: "Индивидуальный",
+    labelCommunity: "Сообщество",
+    labelGenerational: "Поколенческий",
+    labelLocation: "Местоположение",
+    labelCulture: "Культура",
+    labelTiming: "Время",
+    labelConstraints: "Ограничения",
+    backToLibrary: "← Библиотека",
+    saveAsPDF: "↓ Сохранить как PDF",
+    restoringLibrary: "ВОССТАНОВЛЕНИЕ БИБЛИОТЕКИ...",
+    alwaysWelcome: "ВЫ ВСЕГДА ЗДЕСЬ ДОБРО ПОЖАЛОВАТЬ.",
+    generationFailed: "Ошибка Генерации",
+    clarityBeginsWith: "Истинная ясность начинается с",
+    him: "Него",
+    clarityBlackBoxPara: "Истинная ясность обнаруживается не через большее усердие, а через более внимательное слушание Духа Истины.",
+    proverbs2918label: "Притчи 29:18",
+    proverbs2918quote: "\"Без откровения свыше народ необуздан.\"",
+    proverbs2918desc: "Слово Божье ясно: без ориентированного на Царство видения теряется направление и угасает цель.",
+    proverbs356label: "Притчи 3:5–6",
+    proverbs356quote: "\"Надейся на Господа всем сердцем твоим...\"",
+    proverbs356desc: "Истинное направление начинается, когда мы отпускаем нашу собственную уверенность и подчиняем наши планы водительству Бога.",
+    hazonMission: "Hazon существует, чтобы успокоить шум, укрепить различение в Писании и помочь вам получить ясное видение.",
+    inJesusName: "Во имя Иисуса я объявляю"
   },
   zh: {
     login: "登录", signup: "注册", emailLabel: "电子邮件", passwordLabel: "密码", nameLabel: "姓名",
@@ -977,7 +1330,46 @@ const translations: Record<Language, any> = {
     contribute: "捐助",
     supportDesc: "您的支持帮助我们维持 Hazon 的运行，使我们能够帮助世界各地的寻求者和信徒。每一份贡献都是对为寻求方向的人带来以神为中心的清晰这一使命的投资。",
     amount: "金额",
-    minContribution: "请输入 1 美元或以上的捐款。"
+    minContribution: "请输入 1 美元或以上的捐款。",
+    sectionMandate: "使命",
+    sectionBibleFoundation: "圣经基础",
+    sectionBiblicalModels: "圣经榜样",
+    sectionCoreValues: "核心价值观",
+    sectionStrategicPillars: "战略支柱",
+    sectionTargetImpact: "目标影响",
+    sectionKingdomPurpose: "国度目标",
+    sectionLifeContext: "生活背景",
+    sectionLongTerm: "长期管理",
+    sectionResourceMgmt: "资源管理",
+    sectionRisks: "风险与辨析说明",
+    sectionDeclarations: "宣告",
+    sectionPrayer: "降服祷告",
+    sectionReflection: "反思提示",
+    sectionNextSteps: "下一步",
+    labelFinancialGoal: "财务目标",
+    labelIndividual: "个人",
+    labelCommunity: "社区",
+    labelGenerational: "世代",
+    labelLocation: "地点",
+    labelCulture: "文化",
+    labelTiming: "时机",
+    labelConstraints: "限制",
+    backToLibrary: "← 图书馆",
+    saveAsPDF: "↓ 保存为PDF",
+    restoringLibrary: "正在恢复图书馆...",
+    alwaysWelcome: "您在这里永远受欢迎。",
+    generationFailed: "生成失败",
+    clarityBeginsWith: "真正的清晰从",
+    him: "祂",
+    clarityBlackBoxPara: "真正的清晰不是通过更加努力发现的，而是通过更仔细地倾听真理圣灵。",
+    proverbs2918label: "箴言 29:18",
+    proverbs2918quote: "\"没有异象，民就放肆。\"",
+    proverbs2918desc: "上帝的话语说得清楚：没有与国度一致的异象，方向就会迷失，目的就会消逝。",
+    proverbs356label: "箴言 3:5–6",
+    proverbs356quote: "\"你要专心仰赖耶和华...\"",
+    proverbs356desc: "真正的方向开始于我们放下自己的确信，将计划顺服于上帝的带领。",
+    hazonMission: "Hazon的存在是为了平息噪音，将辨别力扎根于圣经，帮助您接受清晰的异象。",
+    inJesusName: "奉耶稣的名，我宣告"
   },
   hi: {
     login: "लॉग इन", signup: "साइन अप", emailLabel: "ईमेल", passwordLabel: "पासवर्ड", nameLabel: "नाम",
@@ -1074,7 +1466,46 @@ const translations: Record<Language, any> = {
     contribute: "योगदान दें",
     supportDesc: "आपका समर्थन हमें Hazon को चालू रखने में मदद करता है, जिससे हम दुनिया भर में चाहने वालों और विश्वासियों की मदद कर सकते हैं। हर योगदान दिशा चाहने वालों के लिए ईश्वर-केंद्रित स्पष्टता लाने के मिशन में एक निवेश है।",
     amount: "राशि",
-    minContribution: "कृपया $1 या अधिक का योगदान दर्ज करें।"
+    minContribution: "कृपया $1 या अधिक का योगदान दर्ज करें।",
+    sectionMandate: "आदेश",
+    sectionBibleFoundation: "बाइबिल आधार",
+    sectionBiblicalModels: "बाइबिल के आदर्श",
+    sectionCoreValues: "मूल मूल्य",
+    sectionStrategicPillars: "रणनीतिक स्तंभ",
+    sectionTargetImpact: "लक्षित प्रभाव",
+    sectionKingdomPurpose: "राज्य का उद्देश्य",
+    sectionLifeContext: "जीवन संदर्भ",
+    sectionLongTerm: "दीर्घकालिक प्रबंधन",
+    sectionResourceMgmt: "संसाधन प्रबंधन",
+    sectionRisks: "जोखिम और विवेक नोट्स",
+    sectionDeclarations: "घोषणाएँ",
+    sectionPrayer: "समर्पण की प्रार्थना",
+    sectionReflection: "चिंतन प्रश्न",
+    sectionNextSteps: "अगले कदम",
+    labelFinancialGoal: "वित्तीय लक्ष्य",
+    labelIndividual: "व्यक्तिगत",
+    labelCommunity: "समुदाय",
+    labelGenerational: "पीढ़ीगत",
+    labelLocation: "स्थान",
+    labelCulture: "संस्कृति",
+    labelTiming: "समय",
+    labelConstraints: "बाधाएँ",
+    backToLibrary: "← लाइब्रेरी",
+    saveAsPDF: "↓ PDF के रूप में सहेजें",
+    restoringLibrary: "लाइब्रेरी पुनर्स्थापित हो रही है...",
+    alwaysWelcome: "आप यहाँ सदैव स्वागत योग्य हैं।",
+    generationFailed: "निर्माण विफल",
+    clarityBeginsWith: "सच्ची स्पष्टता शुरू होती है",
+    him: "उनसे",
+    clarityBlackBoxPara: "सच्ची स्पष्टता अधिक प्रयास करने से नहीं, बल्कि सत्य की आत्मा को अधिक ध्यान से सुनने से मिलती है।",
+    proverbs2918label: "नीतिवचन 29:18",
+    proverbs2918quote: "\"जहाँ विजन नहीं है, वहाँ लोग नष्ट हो जाते हैं।\"",
+    proverbs2918desc: "परमेश्वर का वचन स्पष्ट करता है: राज्य-केंद्रित दृष्टि के बिना, दिशा खो जाती है और उद्देश्य फीका पड़ जाता है।",
+    proverbs356label: "नीतिवचन 3:5–6",
+    proverbs356quote: "\"पूरे मन से यहोवा पर भरोसा रख...\"",
+    proverbs356desc: "सच्ची दिशा तब शुरू होती है जब हम अपना भरोसा छोड़ते हैं और अपनी योजनाएँ परमेश्वर के मार्गदर्शन को सौंपते हैं।",
+    hazonMission: "Hazon शोर को शांत करने, विवेक को शास्त्र में स्थापित करने और आपको स्पष्ट दृष्टि प्राप्त करने में मदद करने के लिए है।",
+    inJesusName: "यीशु के नाम में, मैं घोषणा करता हूँ"
   },
   bn: {
     login: "লগ ইন", signup: "সাইন আপ", emailLabel: "ইমেল", passwordLabel: "পাসওয়ার্ড", nameLabel: "নাম",
@@ -1171,7 +1602,46 @@ const translations: Record<Language, any> = {
     contribute: "অবদান রাখুন",
     supportDesc: "আপনার সমর্থন আমাদের Hazon চালু রাখতে সাহায্য করে, যা আমাদের বিশ্বব্যাপী অনুসন্ধানকারী এবং বিশ্বাসীদের সাহায্য করতে দেয়। প্রতিটি অবদান দিকনির্দেশনা সন্ধানকারীদের জন্য ঈশ্বর-কেন্দ্রিক স্পষ্টতা আনার মিশনে একটি বিনিয়োগ।",
     amount: "পরিমাণ",
-    minContribution: "দয়া করে $1 বা তার বেশি অবদান লিখুন।"
+    minContribution: "দয়া করে $1 বা তার বেশি অবদান লিখুন।",
+    sectionMandate: "আদেশ",
+    sectionBibleFoundation: "বাইবেলের ভিত্তি",
+    sectionBiblicalModels: "বাইবেলের আদর্শ",
+    sectionCoreValues: "মূল মূল্যবোধ",
+    sectionStrategicPillars: "কৌশলগত স্তম্ভ",
+    sectionTargetImpact: "লক্ষ্য প্রভাব",
+    sectionKingdomPurpose: "রাজ্যের উদ্দেশ্য",
+    sectionLifeContext: "জীবন প্রেক্ষাপট",
+    sectionLongTerm: "দীর্ঘমেয়াদী ব্যবস্থাপনা",
+    sectionResourceMgmt: "সম্পদ ব্যবস্থাপনা",
+    sectionRisks: "ঝুঁকি ও বিচক্ষণতার নোট",
+    sectionDeclarations: "ঘোষণাগুলি",
+    sectionPrayer: "আত্মসমর্পণের প্রার্থনা",
+    sectionReflection: "চিন্তার প্রশ্ন",
+    sectionNextSteps: "পরবর্তী পদক্ষেপ",
+    labelFinancialGoal: "আর্থিক লক্ষ্য",
+    labelIndividual: "ব্যক্তিগত",
+    labelCommunity: "সম্প্রদায়",
+    labelGenerational: "প্রজন্মগত",
+    labelLocation: "অবস্থান",
+    labelCulture: "সংস্কৃতি",
+    labelTiming: "সময়",
+    labelConstraints: "সীমাবদ্ধতা",
+    backToLibrary: "← লাইব্রেরি",
+    saveAsPDF: "↓ PDF হিসেবে সেভ করুন",
+    restoringLibrary: "লাইব্রেরি পুনরুদ্ধার হচ্ছে...",
+    alwaysWelcome: "আপনি এখানে সবসময় স্বাগত।",
+    generationFailed: "নির্মাণ ব্যর্থ",
+    clarityBeginsWith: "সত্যিকারের স্বচ্ছতা শুরু হয়",
+    him: "তাঁর সাথে",
+    clarityBlackBoxPara: "সত্যিকারের স্বচ্ছতা আরও কঠোর পরিশ্রমের মাধ্যমে নয়, বরং সত্যের আত্মাকে আরও মনোযোগ দিয়ে শোনার মাধ্যমে পাওয়া যায়।",
+    proverbs2918label: "হিতোপদেশ 29:18",
+    proverbs2918quote: "\"যেখানে ভিশন নেই, সেখানে মানুষ ধ্বংস হয়।\"",
+    proverbs2918desc: "ঈশ্বরের বাক্য স্পষ্ট: রাজ্য-কেন্দ্রিক দৃষ্টি ছাড়া দিকনির্দেশনা হারিয়ে যায় এবং উদ্দেশ্য ম্লান হয়।",
+    proverbs356label: "হিতোপদেশ 3:5–6",
+    proverbs356quote: "\"সম্পূর্ণ হৃদয় দিয়ে সদাপ্রভুতে ভরসা রাখো...\"",
+    proverbs356desc: "সত্যিকারের দিকনির্দেশনা শুরু হয় যখন আমরা আমাদের নিজস্ব নিশ্চিততা ছেড়ে দিই এবং আমাদের পরিকল্পনা ঈশ্বরের নির্দেশনায় সমর্পণ করি।",
+    hazonMission: "Hazon শব্দের কোলাহল শান্ত করতে, শাস্ত্রে বিচক্ষণতা প্রোথিত করতে এবং আপনাকে স্পষ্ট দৃষ্টি পেতে সাহায্য করতে বিদ্যমান।",
+    inJesusName: "যীশুর নামে, আমি ঘোষণা করি"
   },
   ja: {
     login: "ログイン", signup: "サインアップ", emailLabel: "メールアドレス", passwordLabel: "パスワード", nameLabel: "名前",
@@ -1265,7 +1735,49 @@ const translations: Record<Language, any> = {
     language: "言語",
     supportHazon: "Hazonをサポート",
     improvementSuggestions: "改善の提案",
-    contribute: "寄付する"
+    contribute: "寄付する",
+    sectionMandate: "使命",
+    sectionBibleFoundation: "聖書的基盤",
+    sectionBiblicalModels: "聖書の模範",
+    sectionCoreValues: "核心的価値観",
+    sectionStrategicPillars: "戦略的柱",
+    sectionTargetImpact: "目標とする影響",
+    sectionKingdomPurpose: "御国の目的",
+    sectionLifeContext: "生活背景",
+    sectionLongTerm: "長期的管理",
+    sectionResourceMgmt: "資源管理",
+    sectionRisks: "リスクと識別メモ",
+    sectionDeclarations: "宣言",
+    sectionPrayer: "委ねの祈り",
+    sectionReflection: "内省のための質問",
+    sectionNextSteps: "次のステップ",
+    labelFinancialGoal: "財務目標",
+    labelIndividual: "個人",
+    labelCommunity: "コミュニティ",
+    labelGenerational: "世代的",
+    labelLocation: "場所",
+    labelCulture: "文化",
+    labelTiming: "タイミング",
+    labelConstraints: "制約",
+    backToLibrary: "← ライブラリ",
+    saveAsPDF: "↓ PDFとして保存",
+    restoringLibrary: "ライブラリを復元中...",
+    alwaysWelcome: "あなたはいつでもここで歓迎されています。",
+    generationFailed: "生成に失敗しました",
+    clarityBeginsWith: "真の明確さは",
+    him: "神",
+    clarityBlackBoxPara: "真の明確さは、より努力することではなく、真理の御霊にもっと注意深く耳を傾けることで発見されます。",
+    proverbs2918label: "箴言 29:18",
+    proverbs2918quote: "\"幻がなければ、民はほしいままにふるまう。\"",
+    proverbs2918desc: "神の言葉は明確です：御国に向けたビジョンなしでは方向性が失われ、目的が薄れます。",
+    proverbs356label: "箴言 3:5–6",
+    proverbs356quote: "\"心を尽くして主に信頼せよ...\"",
+    proverbs356desc: "真の方向性は、自分の確信を手放し、計画を神の導きに委ねるときに始まります。",
+    hazonMission: "Hazonは、雑音を静め、聖書に識別を根ざし、明確なビジョンを受け取るのを助けるために存在します。",
+    inJesusName: "イエスの名において、私は宣言します",
+    supportDesc: "あなたの支援はHazonの運営維持に役立ち、世界中の探求者や信者を助けることができます。",
+    amount: "金額",
+    minContribution: "1ドル以上の金額を入力してください。"
   },
   ko: {
     login: "로그인", signup: "회원가입", emailLabel: "이메일", passwordLabel: "비밀번호", nameLabel: "이름",
@@ -1359,7 +1871,49 @@ const translations: Record<Language, any> = {
     language: "언어",
     supportHazon: "Hazon 후원하기",
     improvementSuggestions: "개선 제안",
-    contribute: "후원하기"
+    contribute: "후원하기",
+    sectionMandate: "사명",
+    sectionBibleFoundation: "성경적 기반",
+    sectionBiblicalModels: "성경의 모델",
+    sectionCoreValues: "핵심 가치관",
+    sectionStrategicPillars: "전략적 기둥",
+    sectionTargetImpact: "목표 영향",
+    sectionKingdomPurpose: "나라의 목적",
+    sectionLifeContext: "삶의 맥락",
+    sectionLongTerm: "장기 청지기 직분",
+    sectionResourceMgmt: "자원 관리",
+    sectionRisks: "위험 및 분별 메모",
+    sectionDeclarations: "선언",
+    sectionPrayer: "헌신의 기도",
+    sectionReflection: "성찰 질문",
+    sectionNextSteps: "다음 단계",
+    labelFinancialGoal: "재정 목표",
+    labelIndividual: "개인",
+    labelCommunity: "공동체",
+    labelGenerational: "세대적",
+    labelLocation: "위치",
+    labelCulture: "문화",
+    labelTiming: "타이밍",
+    labelConstraints: "제약",
+    backToLibrary: "← 라이브러리",
+    saveAsPDF: "↓ PDF로 저장",
+    restoringLibrary: "라이브러리 복원 중...",
+    alwaysWelcome: "당신은 항상 여기서 환영받습니다.",
+    generationFailed: "생성 실패",
+    clarityBeginsWith: "진정한 명확함은",
+    him: "그분",
+    clarityBlackBoxPara: "진정한 명확함은 더 열심히 노력함으로써가 아니라 진리의 성령에 더 가까이 귀를 기울임으로써 발견됩니다.",
+    proverbs2918label: "잠언 29:18",
+    proverbs2918quote: "\"묵시가 없으면 백성이 방자히 행하거니와\"",
+    proverbs2918desc: "하나님의 말씀은 분명합니다: 나라에 맞춘 비전 없이는 방향을 잃고 목적이 흐려집니다.",
+    proverbs356label: "잠언 3:5–6",
+    proverbs356quote: "\"마음을 다하여 여호와를 신뢰하고...\"",
+    proverbs356desc: "진정한 방향은 우리 자신의 확신을 내려놓고 계획을 하나님의 인도에 맡길 때 시작됩니다.",
+    hazonMission: "Hazon은 소음을 잠재우고, 말씀 안에 분별력을 고정시키며, 명확한 비전을 받도록 돕기 위해 존재합니다.",
+    inJesusName: "예수님의 이름으로, 나는 선언합니다",
+    supportDesc: "여러분의 지원은 Hazon을 유지하는 데 도움이 되어 전 세계 탐구자와 신자들을 돕습니다.",
+    amount: "금액",
+    minContribution: "1달러 이상의 금액을 입력해 주세요."
   },
   sw: {
     login: "INGIA", signup: "JISAJILI", emailLabel: "Barua pepe", passwordLabel: "Nywila", nameLabel: "Jina",
@@ -1453,7 +2007,49 @@ const translations: Record<Language, any> = {
     language: "Lugha",
     supportHazon: "Saidia Hazon",
     improvementSuggestions: "Mapendekezo ya Maboresho",
-    contribute: "Changia"
+    contribute: "Changia",
+    sectionMandate: "Agizo",
+    sectionBibleFoundation: "Msingi wa Kibiblia",
+    sectionBiblicalModels: "Mifano ya Kibiblia",
+    sectionCoreValues: "Maadili ya Msingi",
+    sectionStrategicPillars: "Nguzo za Kimkakati",
+    sectionTargetImpact: "Athari Inayolengwa",
+    sectionKingdomPurpose: "Kusudi la Ufalme",
+    sectionLifeContext: "Muktadha wa Maisha",
+    sectionLongTerm: "Usimamizi wa Muda Mrefu",
+    sectionResourceMgmt: "Usimamizi wa Rasilimali",
+    sectionRisks: "Hatari na Maelezo ya Utambuzi",
+    sectionDeclarations: "Matangazo",
+    sectionPrayer: "Sala ya Kujisalimisha",
+    sectionReflection: "Maswali ya Kutafakari",
+    sectionNextSteps: "Hatua Zinazofuata",
+    labelFinancialGoal: "Lengo la Kifedha",
+    labelIndividual: "Mtu Binafsi",
+    labelCommunity: "Jamii",
+    labelGenerational: "Kizazi",
+    labelLocation: "Mahali",
+    labelCulture: "Utamaduni",
+    labelTiming: "Muda",
+    labelConstraints: "Vizuizi",
+    backToLibrary: "← Maktaba",
+    saveAsPDF: "↓ Hifadhi kama PDF",
+    restoringLibrary: "KURUDISHA MAKTABA...",
+    alwaysWelcome: "DAIMA UNAKARIBISHWA HAPA.",
+    generationFailed: "Utengenezaji Umeshindwa",
+    clarityBeginsWith: "Uwazi wa kweli huanza na",
+    him: "Yeye",
+    clarityBlackBoxPara: "Uwazi wa kweli haugunduliki kwa kujitahidi zaidi, bali kwa kusikiliza kwa makini zaidi Roho wa Kweli.",
+    proverbs2918label: "Mithali 29:18",
+    proverbs2918quote: "\"Pasipo maono, watu huacha kujizuia.\"",
+    proverbs2918desc: "Neno la Mungu linafanya wazi: bila maono yaliyoelekezwa kwa ufalme, mwelekeo hupotea na madhumuni hufifia.",
+    proverbs356label: "Mithali 3:5–6",
+    proverbs356quote: "\"Mwamini Bwana kwa moyo wako wote...\"",
+    proverbs356desc: "Mwelekeo wa kweli huanza tunapoacha uhakika wetu wenyewe na kuwasilisha mipango yetu kwa uongozi wa Mungu.",
+    hazonMission: "Hazon ipo ili kutuliza kelele, kuimarisha utambuzi katika Maandiko, na kukusaidia kupokea maono yaliyo wazi.",
+    inJesusName: "Kwa jina la Yesu, natangaza",
+    supportDesc: "Msaada wako unasaidia kuendesha Hazon, unatuwezesha kusaidia watafutaji na waumini duniani kote.",
+    amount: "KIASI",
+    minContribution: "Tafadhali ingiza mchango wa $1 au zaidi."
   },
   tr: {
     login: "GİRİŞ YAP", signup: "KAYIT OL", emailLabel: "E-posta", passwordLabel: "Şifre", nameLabel: "İsim",
@@ -1550,7 +2146,46 @@ const translations: Record<Language, any> = {
     contribute: "Katkıda Bulun",
     supportDesc: "Desteğiniz Hazon'un çalışmaya devam etmesine yardımcı oluyor ve dünya çapındaki arayışçılara ve inananlara yardım etmemizi sağlıyor. Her katkı, yön arayanlara Tanrı merkezli netlik getirme misyonuna yapılan bir yatırımdır.",
     amount: "MİKTAR",
-    minContribution: "Lütfen $1 veya daha fazla bir katkı girin."
+    minContribution: "Lütfen $1 veya daha fazla bir katkı girin.",
+    sectionMandate: "Görev",
+    sectionBibleFoundation: "İncil Temeli",
+    sectionBiblicalModels: "İncil Modelleri",
+    sectionCoreValues: "Temel Değerler",
+    sectionStrategicPillars: "Stratejik Sütunlar",
+    sectionTargetImpact: "Hedef Etki",
+    sectionKingdomPurpose: "Krallık Amacı",
+    sectionLifeContext: "Yaşam Bağlamı",
+    sectionLongTerm: "Uzun Vadeli Yönetim",
+    sectionResourceMgmt: "Kaynak Yönetimi",
+    sectionRisks: "Riskler ve Ayırt Etme Notları",
+    sectionDeclarations: "Beyanlar",
+    sectionPrayer: "Teslim Duası",
+    sectionReflection: "Yansıma Soruları",
+    sectionNextSteps: "Sonraki Adımlar",
+    labelFinancialGoal: "Finansal Hedef",
+    labelIndividual: "Bireysel",
+    labelCommunity: "Topluluk",
+    labelGenerational: "Kuşaksal",
+    labelLocation: "Konum",
+    labelCulture: "Kültür",
+    labelTiming: "Zamanlama",
+    labelConstraints: "Kısıtlamalar",
+    backToLibrary: "← Kütüphane",
+    saveAsPDF: "↓ PDF olarak kaydet",
+    restoringLibrary: "KÜTÜPHANEYİ GERİ YÜKLÜYOR...",
+    alwaysWelcome: "BURADA HER ZAMAN HOŞ GELDİNİZ.",
+    generationFailed: "Oluşturma Başarısız",
+    clarityBeginsWith: "Gerçek netlik",
+    him: "O'ndan başlar",
+    clarityBlackBoxPara: "Gerçek netlik daha çok çabalamakla değil, Hakikat Ruhu'nu daha dikkatli dinlemekle keşfedilir.",
+    proverbs2918label: "Özdeyişler 29:18",
+    proverbs2918quote: "\"Görüm olmayan yerde halk dizginsizleşir.\"",
+    proverbs2918desc: "Tanrı'nın Sözü açıktır: krallıkla uyumlu vizyon olmadan yön kaybolur ve amaç solar.",
+    proverbs356label: "Özdeyişler 3:5–6",
+    proverbs356quote: "\"Bütün yüreğinle Rabbe güven...\"",
+    proverbs356desc: "Gerçek yön, kendi kesinliğimizi bırakıp planlarımızı Tanrı'nın rehberliğine teslim ettiğimizde başlar.",
+    hazonMission: "Hazon gürültüyü susturmak, Kutsal Yazı'da ayırt etmeyi çıpalamak ve net bir vizyon almanıza yardımcı olmak için vardır.",
+    inJesusName: "İsa'nın adıyla ilan ediyorum"
   },
   id: {
     login: "MASUK", signup: "DAFTAR", emailLabel: "Email", passwordLabel: "Kata Sandi", nameLabel: "Nama",
@@ -1647,7 +2282,46 @@ const translations: Record<Language, any> = {
     contribute: "Berkontribusi",
     supportDesc: "Dukungan Anda membantu kami menjaga Hazon tetap berjalan, memungkinkan kami membantu para pencari dan orang percaya di seluruh dunia. Setiap kontribusi adalah investasi dalam misi membawa kejelasan yang berpusat pada Tuhan kepada mereka yang mencari arah.",
     amount: "JUMLAH",
-    minContribution: "Silakan masukkan kontribusi sebesar $1 atau lebih."
+    minContribution: "Silakan masukkan kontribusi sebesar $1 atau lebih.",
+    sectionMandate: "Mandat",
+    sectionBibleFoundation: "Fondasi Alkitabiah",
+    sectionBiblicalModels: "Model Alkitabiah",
+    sectionCoreValues: "Nilai-Nilai Inti",
+    sectionStrategicPillars: "Pilar Strategis",
+    sectionTargetImpact: "Dampak yang Dituju",
+    sectionKingdomPurpose: "Tujuan Kerajaan",
+    sectionLifeContext: "Konteks Kehidupan",
+    sectionLongTerm: "Pengelolaan Jangka Panjang",
+    sectionResourceMgmt: "Manajemen Sumber Daya",
+    sectionRisks: "Risiko & Catatan Penegasan",
+    sectionDeclarations: "Deklarasi",
+    sectionPrayer: "Doa Penyerahan",
+    sectionReflection: "Pertanyaan Refleksi",
+    sectionNextSteps: "Langkah Selanjutnya",
+    labelFinancialGoal: "Tujuan Finansial",
+    labelIndividual: "Individu",
+    labelCommunity: "Komunitas",
+    labelGenerational: "Generasional",
+    labelLocation: "Lokasi",
+    labelCulture: "Budaya",
+    labelTiming: "Waktu",
+    labelConstraints: "Kendala",
+    backToLibrary: "← Perpustakaan",
+    saveAsPDF: "↓ Simpan sebagai PDF",
+    restoringLibrary: "MEMULIHKAN PERPUSTAKAAN...",
+    alwaysWelcome: "ANDA SELALU DISAMBUT DI SINI.",
+    generationFailed: "Pembuatan Gagal",
+    clarityBeginsWith: "Kejelasan sejati dimulai dengan",
+    him: "Dia",
+    clarityBlackBoxPara: "Kejelasan sejati tidak ditemukan dengan berusaha lebih keras, tetapi dengan mendengarkan Roh Kebenaran dengan lebih seksama.",
+    proverbs2918label: "Amsal 29:18",
+    proverbs2918quote: "\"Bila tidak ada wahyu, liarlah rakyat.\"",
+    proverbs2918desc: "Firman Tuhan menjelaskan: tanpa visi yang selaras dengan kerajaan, arah hilang dan tujuan memudar.",
+    proverbs356label: "Amsal 3:5–6",
+    proverbs356quote: "\"Percayalah kepada Tuhan dengan segenap hatimu...\"",
+    proverbs356desc: "Arah sejati dimulai ketika kita melepaskan kepastian kita sendiri dan menyerahkan rencana kita kepada pimpinan Tuhan.",
+    hazonMission: "Hazon ada untuk meredam kebisingan, mendasarkan penegasan dalam Alkitab, dan membantu Anda menerima visi yang jelas.",
+    inJesusName: "Dalam nama Yesus, saya menyatakan"
   }
 };
 
@@ -1968,7 +2642,7 @@ const onOpenSession = (s: VisionSession) => {
         }
         {view === 'confirmation' && <ConfirmationView title={confData.title} desc={confData.desc} onBack={() => setView('auth')} t={t} />}
         {view === 'notFound' && <NotFoundView onBack={() => setView('dashboard')} t={t} />}
-        {view === 'profile' && user && userProfile && <ProfilePage user={user} profile={userProfile} lang={lang} setLang={setLang} onBack={() => setView('dashboard')} onLogout={handleLogout} onPayments={() => setView('payments')} t={t} />}
+        {view === 'profile' && user && userProfile && <ProfilePage user={user} profile={userProfile} lang={lang} setLang={setLang} sessionLocked={!!(currentSession && currentSession.messages && currentSession.messages.length > 0 && currentSession.state !== DiscernmentState.COMPLETE)} onBack={() => setView('dashboard')} onLogout={handleLogout} onPayments={() => setView('payments')} t={t} />}
         {view === 'payments' && <PaymentsSettings cards={cards} onAddCard={addCard} onRemoveCard={removeCard} onBack={() => setView('profile')} t={t} />}
       </main>
     </div>
@@ -2081,35 +2755,35 @@ const LandingPage: React.FC<{ onProceed: () => void, t: any, setLang: (l: Langua
               <div className="text-center space-y-6">
                 <h2 className="text-3xl md:text-5xl serif font-normal">{t.aboutBlackBoxTitle || "Clarity Through the Word of God"}</h2>
                 <p className="text-base md:text-xl opacity-70 font-light max-w-2xl mx-auto leading-relaxed">
-                  True clarity is not discovered by striving harder, but by listening more closely to the Spirit of Truth. Scripture teaches that vision is not formed by impulse, but revealed through God’s wisdom.
+                  {t.clarityBlackBoxPara}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <p className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">Proverbs 29:18</p>
-                    <h3 className="text-xl md:text-2xl serif italic">“Where there is no vision, the people perish.”</h3>
+                    <p className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">{t.proverbs2918label}</p>
+                    <h3 className="text-xl md:text-2xl serif italic">{t.proverbs2918quote}</h3>
                   </div>
                   <p className="text-sm md:text-base opacity-60 leading-relaxed font-light">
-                    God’s Word makes it clear: without kingdom aligned vision, direction is lost and purpose fades. Vision is not optional, it is essential for a life aligned with Him.
+                    {t.proverbs2918desc}
                   </p>
                 </div>
 
                 <div className="space-y-6">
                   <div className="space-y-2">
-                    <p className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">Proverbs 3:5–6</p>
-                    <h3 className="text-xl md:text-2xl serif italic">“Trust in the Lord with all your heart...”</h3>
+                    <p className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-40">{t.proverbs356label}</p>
+                    <h3 className="text-xl md:text-2xl serif italic">{t.proverbs356quote}</h3>
                   </div>
                   <p className="text-sm md:text-base opacity-60 leading-relaxed font-light">
-                    True direction begins when we release our own certainty and submit our plans to God’s leading. He will make straight your paths when you acknowledge Him in all your ways.
+                    {t.proverbs356desc}
                   </p>
                 </div>
               </div>
 
               <div className="pt-8 border-t border-white/10 text-center">
                 <p className="text-base md:text-xl serif italic opacity-80 max-w-3xl mx-auto">
-                  Hazon exists to quiet the noise, anchor discernment in Scripture, and help you receive vision that is clear, God-centered, and meant to be lived out with faith and wisdom.
+                  {t.hazonMission}
                 </p>
               </div>
             </div>
@@ -2206,7 +2880,7 @@ const LandingPage: React.FC<{ onProceed: () => void, t: any, setLang: (l: Langua
             <div className="space-y-4">
               <p className="text-[10px] uppercase tracking-[0.6em] opacity-40 font-bold">{t.evangelismTitle}</p>
               <h2 className="text-4xl md:text-6xl serif leading-tight font-normal">
-                True clarity begins with <span className="serif italic">Him</span>.
+                {t.clarityBeginsWith} <span className="serif italic">{t.him}</span>.
               </h2>
             </div>
             
@@ -2247,7 +2921,7 @@ const LandingPage: React.FC<{ onProceed: () => void, t: any, setLang: (l: Langua
                   <p className="text-xs md:text-sm serif italic opacity-50 max-w-xs mx-auto leading-relaxed">
                     {t.savedByGrace}
                   </p>
-                  <p className="text-[9px] uppercase tracking-[0.5em] font-bold opacity-30">YOU ARE ALWAYS WELCOME HERE.</p>
+                  <p className="text-[9px] uppercase tracking-[0.5em] font-bold opacity-30">{t.alwaysWelcome}</p>
                 </div>
               </div>
             </div>
@@ -2339,7 +3013,7 @@ const Dashboard: React.FC<{ sessions: VisionSession[], isLoading: boolean, onNew
       {isLoading ? (
         <div className="py-24 text-center">
           <div className="w-8 h-8 border-2 border-black/5 border-t-black rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-[11px] uppercase tracking-widest opacity-20 font-bold">RESTORING LIBRARY...</p>
+          <p className="text-[11px] uppercase tracking-widest opacity-20 font-bold">{t.restoringLibrary}</p>
         </div>
       ) : currentVisions.length === 0 ? (
         <div className="py-24 text-center border-2 border-dashed border-black/5 rounded-3xl">
@@ -2481,7 +3155,7 @@ const expectedImpact =
     const rawDeclarations: string[] = doc.spiritual_tools?.declarations || [];
     const declarations = rawDeclarations.map((d: string) => {
       if (d.toLowerCase().startsWith('in the name of jesus') || d.toLowerCase().startsWith('in jesus')) return d;
-      return `In the name of Jesus, I declare ${d.charAt(0).toLowerCase()}${d.slice(1)}`;
+      return `${t.inJesusName} ${d.charAt(0).toLowerCase()}${d.slice(1)}`;
     });
     let prayer: string = doc.spiritual_tools?.prayer || '';
     if (prayer && !prayer.startsWith('Heavenly Father')) prayer = `Heavenly Father, ${prayer.charAt(0).toLowerCase()}${prayer.slice(1)}`;
@@ -2498,10 +3172,10 @@ const expectedImpact =
   <div className="max-w-3xl mx-auto px-6 md:px-12 animate-fade pt-10 pb-32">
     <div className="flex items-center justify-between mb-12">
       <button onClick={onBack} className="text-[10px] uppercase tracking-widest font-bold opacity-40">
-        ← Library
+        {t.backToLibrary}
       </button>
       <button onClick={handleDownloadPDF} className="text-[10px] uppercase tracking-widest font-bold bg-black text-white px-6 py-3 rounded-full hover:bg-black/80 transition-all">
-        ↓ Save as PDF
+        {t.saveAsPDF}
       </button>
     </div>
 
@@ -2514,7 +3188,7 @@ const expectedImpact =
         {visionStatement && <p className="text-lg serif leading-relaxed opacity-70 italic mt-4">{visionStatement}</p>}
         {financialGoal && (
           <div className="mt-4 pl-4 border-l-2 border-black/20 bg-black/5 p-3 rounded">
-            <p className="text-[9px] uppercase tracking-widest opacity-40 mb-1">Financial Goal</p>
+            <p className="text-[9px] uppercase tracking-widest opacity-40 mb-1">{t.labelFinancialGoal}</p>
             <p className="font-bold">{financialGoal}</p>
           </div>
         )}
@@ -2523,7 +3197,7 @@ const expectedImpact =
       {/* MANDATE */}
       {missionStatement && (
         <div>
-          <SectionHeader label="Mandate" />
+          <SectionHeader label={t.sectionMandate} />
           <p className="text-base serif leading-relaxed opacity-80">{missionStatement}</p>
         </div>
       )}
@@ -2531,7 +3205,7 @@ const expectedImpact =
       {/* BIBLE FOUNDATION */}
       {biblicalFoundation?.length > 0 && (
         <div>
-          <SectionHeader label="Bible Foundation" />
+          <SectionHeader label={t.sectionBibleFoundation} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {biblicalFoundation.map((b: any, i: number) => (
               <div key={i} className="pl-3 border-l-2 border-black/10">
@@ -2546,7 +3220,7 @@ const expectedImpact =
       {/* BIBLICAL MODELS */}
       {biblicalModels?.length > 0 && (
         <div>
-          <SectionHeader label="Biblical Models" />
+          <SectionHeader label={t.sectionBiblicalModels} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {biblicalModels.map((m: any, i: number) => (
               <div key={i} className="bg-black/5 p-4 rounded">
@@ -2561,7 +3235,7 @@ const expectedImpact =
       {/* CORE VALUES */}
       {coreValues?.length > 0 && (
         <div>
-          <SectionHeader label="Core Values" />
+          <SectionHeader label={t.sectionCoreValues} />
           <div className="space-y-3">
             {coreValues.map((v: any, i: number) => (
               <div key={i} className="bg-black/5 p-3 rounded">
@@ -2576,7 +3250,7 @@ const expectedImpact =
       {/* STRATEGIC PILLARS */}
       {strategicPillars?.length > 0 && (
         <div>
-          <SectionHeader label="Strategic Pillars" />
+          <SectionHeader label={t.sectionStrategicPillars} />
           <div className="space-y-3">
             {strategicPillars.map((p: any, i: number) => (
               <div key={i} className="border-b border-black/5 pb-3">
@@ -2591,23 +3265,23 @@ const expectedImpact =
       {/* TARGET IMPACT */}
       {impactTargets && (
         <div>
-          <SectionHeader label="Target Impact" />
+          <SectionHeader label={t.sectionTargetImpact} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {impactTargets.individual && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Individual</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelIndividual}</p>
                 <p className="text-sm opacity-70">{impactTargets.individual}</p>
               </div>
             )}
             {impactTargets.community && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Community</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelCommunity}</p>
                 <p className="text-sm opacity-70">{impactTargets.community}</p>
               </div>
             )}
             {impactTargets.generational && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Generational</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelGenerational}</p>
                 <p className="text-sm opacity-70">{impactTargets.generational}</p>
               </div>
             )}
@@ -2618,7 +3292,7 @@ const expectedImpact =
       {/* KINGDOM PURPOSE */}
       {futurePicture?.length > 0 && (
         <div>
-          <SectionHeader label="Kingdom Purpose" />
+          <SectionHeader label={t.sectionKingdomPurpose} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {futurePicture.map((item: string, i: number) => (
               <p key={i} className="text-sm opacity-60">• {item}</p>
@@ -2630,29 +3304,29 @@ const expectedImpact =
       {/* LIFE CONTEXT */}
       {lifeContext && (
         <div>
-          <SectionHeader label="Life Context" />
+          <SectionHeader label={t.sectionLifeContext} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {lifeContext.location && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Location</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelLocation}</p>
                 <p className="text-sm opacity-70">{lifeContext.location}</p>
               </div>
             )}
             {lifeContext.culture && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Culture</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelCulture}</p>
                 <p className="text-sm opacity-70">{lifeContext.culture}</p>
               </div>
             )}
             {lifeContext.timing && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Timing</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelTiming}</p>
                 <p className="text-sm opacity-70">{lifeContext.timing}</p>
               </div>
             )}
             {lifeContext.constraints && (
               <div>
-                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">Constraints</p>
+                <p className="text-[9px] uppercase tracking-widest opacity-30 mb-1">{t.labelConstraints}</p>
                 <p className="text-sm opacity-70">{lifeContext.constraints}</p>
               </div>
             )}
@@ -2663,7 +3337,7 @@ const expectedImpact =
       {/* LONG TERM STEWARDSHIP */}
       {longTerm?.length > 0 && (
         <div>
-          <SectionHeader label="Long-Term Stewardship" />
+          <SectionHeader label={t.sectionLongTerm} />
           <div className="space-y-2">
             {longTerm.map((item: string, i: number) => (
               <p key={i} className="text-sm opacity-60">• {item}</p>
@@ -2675,7 +3349,7 @@ const expectedImpact =
       {/* RESOURCE MANAGEMENT */}
       {resourceManagement && (
         <div>
-          <SectionHeader label="Resource Management" />
+          <SectionHeader label={t.sectionResourceMgmt} />
           <p className="text-sm opacity-70 bg-black/5 p-3 rounded">{resourceManagement}</p>
         </div>
       )}
@@ -2683,7 +3357,7 @@ const expectedImpact =
       {/* RISKS */}
       {risks?.length > 0 && (
         <div>
-          <SectionHeader label="Risks & Discernment Notes" />
+          <SectionHeader label={t.sectionRisks} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
             {risks.map((item: string, i: number) => (
               <p key={i} className="text-sm opacity-60">• {item}</p>
@@ -2695,7 +3369,7 @@ const expectedImpact =
       {/* DECLARATIONS */}
       {declarations?.length > 0 && (
         <div className="bg-black text-white p-8 rounded-2xl">
-          <p className="text-[10px] uppercase tracking-[0.4em] opacity-40 text-center mb-8">Declarations</p>
+          <p className="text-[10px] uppercase tracking-[0.4em] opacity-40 text-center mb-8">{t.sectionDeclarations}</p>
           <div className="space-y-6">
             {declarations.map((d: string, i: number) => (
               <p key={i} className="text-base serif italic text-center leading-relaxed">"{d}"</p>
@@ -2707,7 +3381,7 @@ const expectedImpact =
       {/* PRAYER */}
       {prayer && (
         <div>
-          <SectionHeader label="Prayer of Surrender" />
+          <SectionHeader label={t.sectionPrayer} />
           <p className="text-base serif italic leading-relaxed opacity-70">{prayer}</p>
         </div>
       )}
@@ -2715,7 +3389,7 @@ const expectedImpact =
       {/* REFLECTION PROMPTS */}
       {reflectionPrompts?.length > 0 && (
         <div>
-          <SectionHeader label="Reflection Prompts" />
+          <SectionHeader label={t.sectionReflection} />
           <div className="space-y-3">
             {reflectionPrompts.map((r: string, i: number) => (
               <p key={i} className="text-sm serif italic opacity-60 pl-3 border-l-2 border-black/10">{r}</p>
@@ -2727,7 +3401,7 @@ const expectedImpact =
       {/* NEXT STEPS — always last */}
       {expectedImpact?.length > 0 && (
         <div>
-          <SectionHeader label="Next Steps" />
+          <SectionHeader label={t.sectionNextSteps} />
           <div className="space-y-4">
             {expectedImpact.map((item: string, i: number) => (
               <div key={i} className="flex gap-4">
@@ -2923,7 +3597,7 @@ const expectedImpact =
   );
 };
 
-const ProfilePage: React.FC<{ user: any, profile: any, lang: Language, setLang: (l: Language) => void, onBack: () => void, onLogout: () => void, onPayments: () => void, t: any }> = ({ user, profile, lang, setLang, onBack, onLogout, onPayments, t }) => {
+const ProfilePage: React.FC<{ user: any, profile: any, lang: Language, setLang: (l: Language) => void, sessionLocked?: boolean, onBack: () => void, onLogout: () => void, onPayments: () => void, t: any }> = ({ user, profile, lang, setLang, sessionLocked, onBack, onLogout, onPayments, t }) => {
   const [showOffering, setShowOffering] = useState(false);
   const [amount, setAmount] = useState(10);
   const [loading, setLoading] = useState(false);
@@ -3027,8 +3701,9 @@ const ProfilePage: React.FC<{ user: any, profile: any, lang: Language, setLang: 
              <label className="text-[10px] uppercase tracking-widest font-bold opacity-30 block ml-1">{t.language}</label>
              <select 
                value={lang} 
-               onChange={(e) => setLang(e.target.value as Language)}
-               className="w-full bg-[#F5F5F3] rounded-full px-6 py-4 text-xs font-bold tracking-widest uppercase outline-none border border-transparent focus:border-black/5 transition-all"
+               onChange={(e) => !sessionLocked && setLang(e.target.value as Language)}
+               disabled={sessionLocked}
+               className={`w-full bg-[#F5F5F3] rounded-full px-6 py-4 text-xs font-bold tracking-widest uppercase outline-none border border-transparent focus:border-black/5 transition-all ${sessionLocked ? 'opacity-30 cursor-not-allowed' : ''}`}
              >
                <option value="en">English</option>
                <option value="es">Español</option>
@@ -3048,6 +3723,9 @@ const ProfilePage: React.FC<{ user: any, profile: any, lang: Language, setLang: 
                <option value="tr">Türkçe</option>
                <option value="id">Bahasa Indonesia</option>
              </select>
+             {sessionLocked && (
+               <p className="text-[9px] uppercase tracking-widest opacity-30 font-bold ml-2">Language is locked during an active vision session.</p>
+             )}
           </div>
 
           <div className="pt-8 border-t border-black/5 flex flex-col gap-4">
@@ -3074,9 +3752,7 @@ const ProfilePage: React.FC<{ user: any, profile: any, lang: Language, setLang: 
   );
 };
 
-const PaymentsSettings: React.FC<{ cards: CreditCard[], onAddCard: (c: CreditCard) => void, onRemoveCard: (id: string) => void, onBack: () => void, t: any }> = ({ cards, onAddCard, onRemoveCard, onBack, t }) => {
-  const [showAdd, setShowAdd] = useState(false);
-  
+const PaymentsSettings: React.FC<{ cards: CreditCard[], onAddCard: (c: CreditCard) => void, onRemoveCard: (id: string) => void, onBack: () => void, t: any }> = ({ onBack, t }) => {
   return (
     <div className="max-w-xl mx-auto p-6 md:p-12 animate-fade space-y-16">
       <div className="flex justify-between items-center">
@@ -3084,35 +3760,21 @@ const PaymentsSettings: React.FC<{ cards: CreditCard[], onAddCard: (c: CreditCar
         <button onClick={onBack} className="text-[10px] uppercase tracking-widest font-bold opacity-40">{t.back}</button>
       </div>
 
-      <div className="space-y-10">
-        <div className="grid gap-6">
-          {cards.length === 0 ? (
-            <div className="py-12 text-center border-2 border-dashed border-black/5 rounded-[2rem]">
-              <p className="text-[11px] uppercase tracking-[0.4em] opacity-30 font-bold">{t.noCards}</p>
-            </div>
-          ) : (
-            cards.map(card => (
-              <div key={card.id} className="bg-white p-8 rounded-[2rem] border border-black/5 flex justify-between items-center shadow-sm">
-                <div className="space-y-1">
-                  <p className="font-bold tracking-widest text-[10px] uppercase opacity-40">{card.brand}</p>
-                  <p className="text-lg tracking-wider">•••• •••• •••• {card.last4}</p>
-                  <p className="text-xs opacity-30 uppercase tracking-widest">{card.name} — {card.expiry}</p>
-                </div>
-                <button onClick={() => onRemoveCard(card.id)} className="text-red-500/40 hover:text-red-500 transition-colors">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
-                </button>
-              </div>
-            ))
-          )}
+      <div className="py-24 flex flex-col items-center text-center space-y-8">
+        <div className="w-16 h-16 rounded-full bg-black/5 flex items-center justify-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-30">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/>
+          </svg>
         </div>
-
-        {!showAdd ? (
-          <button onClick={() => setShowAdd(true)} className="w-full bg-black text-white py-5 rounded-full text-[10px] uppercase tracking-[0.4em] font-bold shadow-lg shadow-black/10">
-            {t.addCard}
-          </button>
-        ) : (
-          <AddCardForm onAdd={(c) => { onAddCard(c); setShowAdd(false); }} onCancel={() => setShowAdd(false)} t={t} />
-        )}
+        <div className="space-y-3">
+          <h3 className="text-2xl md:text-3xl serif font-normal tracking-tight">Coming Soon</h3>
+          <p className="text-sm opacity-40 font-light max-w-xs mx-auto leading-relaxed">
+            Saved payment methods will be available in a future update. Thank you for your patience.
+          </p>
+        </div>
+        <div className="px-6 py-2 bg-black/5 rounded-full">
+          <p className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-30">IN DEVELOPMENT</p>
+        </div>
       </div>
     </div>
   );
@@ -3329,7 +3991,7 @@ const GeneratingView: React.FC<{ session: VisionSession, onComplete: (doc: Visio
           </>
         ) : (
           <div className="space-y-6">
-            <h2 className="text-3xl serif text-red-800/80">Generation Failed</h2>
+            <h2 className="text-3xl serif text-red-800/80">{t.generationFailed}</h2>
             <div className="flex flex-col gap-3">
               <button onClick={runGeneration} className="bg-black text-white px-10 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest">{t.retry}</button>
               <button onClick={onBack} className="text-[10px] font-bold uppercase tracking-widest opacity-40">{t.back}</button>

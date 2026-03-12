@@ -24,63 +24,44 @@ body { background-color: #F5F5F3; color: #111111; font-family: -apple-system, Bl
     <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
   </div>
   <h1 class="text-4xl serif mb-4 font-normal tracking-tight">Thank You.</h1>
-  <p id="status-text" class="text-sm opacity-50 mb-10 font-light leading-relaxed">Verifying your payment...</p>
+  <p id="status-text" class="text-sm opacity-50 mb-10 font-light leading-relaxed">Redirecting to your vision...</p>
   <div id="spinner" class="w-6 h-6 border-2 border-black/5 border-t-black rounded-full animate-spin mx-auto mb-10"></div>
-  <a id="redirect-link" href="/" class="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30 hover:opacity-100 transition-opacity">Return to Hazon manually</a>
+  <a id="redirect-link" href="https://hazon.faith/" class="text-[10px] uppercase tracking-[0.4em] font-bold opacity-30 hover:opacity-100 transition-opacity">Return to Hazon manually</a>
 </div>
 
 <script>
-const SUPABASE_URL = "https://hihspfadzevcdhqgixak.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpaHNwZmFkemV2Y2RocWdpeGFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzI5ODk3OTksImV4cCI6MjA0ODU2NTc5OX0.placeholder";
-
 const urlParams = new URLSearchParams(window.location.search);
 const reference = urlParams.get('reference') || urlParams.get('trxref');
 const visionId = urlParams.get('vision_id');
 
-async function verifyPayment() {
-  if (!reference || !visionId) {
-    document.getElementById('status-text').textContent = 'Missing payment reference. Redirecting...';
-    setTimeout(() => window.location.href = '/', 2000);
-    return;
-  }
-
-  try {
-    const response = await fetch(`${SUPABASE_URL}/functions/v1/verify-paystack-payment`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-      },
-      body: JSON.stringify({
-        action: 'verify',
-        reference: reference,
-        vision_id: visionId || 'offering',
-      }),
-    });
-
-    const data = await response.json();
-
-    if (data.status) {
-      document.getElementById('status-text').textContent = 'Payment verified! Redirecting to your vision...';
-      // Redirect back with verified=true so App.tsx knows to reload session
-      setTimeout(() => {
-        window.location.href = `/?verified=true&vision_id=${visionId}`;
-      }, 1500);
-    } else {
-      document.getElementById('status-text').textContent = 'Verification failed: ' + (data.message || 'Unknown error');
-      document.getElementById('spinner').style.display = 'none';
-    }
-  } catch (err) {
-    document.getElementById('status-text').textContent = 'Error verifying payment. Please return manually.';
-    document.getElementById('spinner').style.display = 'none';
-  }
+// Build return URL — App.tsx will handle verification
+function buildReturnUrl() {
+  const base = 'https://hazon.faith/';
+  const params = new URLSearchParams();
+  if (reference) params.set('reference', reference);
+  if (visionId) params.set('vision_id', visionId);
+  const query = params.toString();
+  return query ? `${base}?${query}` : base;
 }
 
-document.getElementById('redirect-link').href = reference
-  ? `/?reference=${reference}${visionId ? '&vision_id=' + visionId : ''}`
-  : '/';
+const returnUrl = buildReturnUrl();
 
-verifyPayment();
+// Update manual link
+document.getElementById('redirect-link').href = returnUrl;
+
+// Auto-redirect after short delay
+if (reference && visionId) {
+  document.getElementById('status-text').textContent = 'Payment received. Redirecting to your vision...';
+  setTimeout(() => {
+    window.location.href = returnUrl;
+  }, 1500);
+} else {
+  document.getElementById('status-text').textContent = 'Redirecting to Hazon...';
+  document.getElementById('spinner').style.display = 'none';
+  setTimeout(() => {
+    window.location.href = 'https://hazon.faith/';
+  }, 2000);
+}
 </script>
 </body>
 </html>

@@ -35,6 +35,7 @@ const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack
             email: userEmail,
             amount: Math.round(amount * 100), // USD cents → Edge Function converts to ZAR
             vision_id: String(visionId),
+            callback_url: `${window.location.origin}/success.html?vision_id=${String(visionId)}`,
           },
         }
       );
@@ -135,15 +136,10 @@ const VisionUnlock: React.FC<VisionUnlockProps> = ({ visionId, userEmail, onBack
 
         <div className="w-full py-8 border-y border-black/5 flex flex-col items-center my-2">
           <span className="text-[10px] uppercase tracking-[0.3em] opacity-30 font-bold mb-3">{t.contribute || "MY CONTRIBUTION"}</span>
-          <div className="flex items-center gap-1 group">
-            <span className="text-5xl font-bold tracking-tighter text-[#111111] opacity-30">$</span>
-            <input
-              type="number"
-              min="3"
-              value={amount}
-              onChange={(e) => setAmount(Math.max(0, parseFloat(e.target.value) || 0))}
-              className="text-5xl font-bold tracking-tighter text-[#111111] bg-transparent border-none focus:ring-0 w-28 text-center"
-            />
+          <div className="flex items-center gap-4">
+            <button onClick={() => setAmount(a => Math.max(3, a - 1))} className="w-10 h-10 rounded-full border border-black/10 text-xl font-bold flex items-center justify-center hover:bg-black/5 transition">−</button>
+            <span className="text-5xl font-bold tracking-tighter text-[#111111] w-16 text-center">${amount}</span>
+            <button onClick={() => setAmount(a => a + 1)} className="w-10 h-10 rounded-full border border-black/10 text-xl font-bold flex items-center justify-center hover:bg-black/5 transition">+</button>
           </div>
           <p className="text-[9px] uppercase tracking-widest opacity-20 font-bold mt-3">MINIMUM $3.00</p>
         </div>

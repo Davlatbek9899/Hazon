@@ -1,7 +1,10 @@
 import { GoogleGenAI } from "@google/genai";
 import { DiscernmentState, Message, VisionDocument } from "./types";
 
-const ai = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
+// API key ni to'g'ri o'qish
+const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+
+const ai = new GoogleGenAI({ apiKey });
 
 const cleanText = (text: string) => {
   if (!text) return "";
@@ -150,15 +153,17 @@ function normalizeGeminiError(err: any) {
   let friendly = rawMessage;
 
   if (lower.includes("failed to fetch") || lower.includes("networkerror")) {
-    friendly = "Network/CORS muammo: brauzer API'ga ulana olmadi (Failed to fetch). Backend proxy kerak bo'lishi mumkin.";
+    friendly = "Connection failed. Please check your internet or try again later.";
   } else if (lower.includes("401")) {
-    friendly = "401 Unauthorized: API key noto'g'ri yoki umuman o'qilmayapti (VITE_GEMINI_API_KEY).";
+    friendly = "API key is invalid or missing. Please check your VITE_GEMINI_API_KEY in .env file.";
   } else if (lower.includes("403")) {
-    friendly = "403 Forbidden: key ruxsati/billing/region cheklovi bo'lishi mumkin.";
+    friendly = "Access denied. Please check your API key billing and region permissions.";
   } else if (lower.includes("404") || lower.includes("not found")) {
-    friendly = "404 Not Found: model nomi yoki endpoint mos emas (model: gemini-2.5-flash).";
+    friendly = "Model not found. Please check the model name.";
   } else if (lower.includes("quota") || lower.includes("resource_exhausted")) {
-    friendly = "Quota tugagan: limit/kvota muammosi (Resource exhausted).";
+    friendly = "API quota exceeded. Please try again later.";
+  } else if (!apiKey) {
+    friendly = "VITE_GEMINI_API_KEY not found. Please add it to your .env file and restart Vite.";
   }
 
   return { rawMessage, friendly };
@@ -170,9 +175,8 @@ export const getNextDiscernmentStep = async (
   language: string = "en"
 ) => {
   try {
-    const key = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!key) {
-      throw new Error("VITE_GEMINI_API_KEY topilmadi. .env va Vite restartni tekshiring.");
+    if (!apiKey) {
+      throw new Error("VITE_GEMINI_API_KEY not found in environment variables.");
     }
 
     const contents =
@@ -202,9 +206,7 @@ export const getNextDiscernmentStep = async (
     );
   } catch (err: any) {
     const info = normalizeGeminiError(err);
-    console.error("❌ Gemini getNextDiscernmentStep ERROR (raw):", err);
-    console.error("❌ Gemini getNextDiscernmentStep ERROR message:", info.rawMessage);
-    console.error("✅ Friendly hint:", info.friendly);
+    console.error("❌ Gemini getNextDiscernmentStep ERROR:", info.rawMessage);
     throw new Error(info.friendly);
   }
 };
@@ -214,9 +216,8 @@ export const generateSynthesis = async (
   language: string = "en"
 ): Promise<VisionDocument> => {
   try {
-    const key = import.meta.env.VITE_GEMINI_API_KEY;
-    if (!key) {
-      throw new Error("VITE_GEMINI_API_KEY topilmadi. .env va Vite restartni tekshiring.");
+    if (!apiKey) {
+      throw new Error("VITE_GEMINI_API_KEY not found in environment variables.");
     }
 
     const chatTranscript = history
@@ -253,14 +254,12 @@ IMPORTANT RULES:
     try {
       return JSON.parse(jsonText);
     } catch {
-      console.error("❌ JSON parse failed. Raw response text:", jsonText);
-      throw new Error("Failed to parse vision document JSON (model JSON qaytarmadi).");
+      console.error("❌ JSON parse failed. Raw response:", jsonText);
+      throw new Error("Failed to parse vision document. Please try again.");
     }
   } catch (err: any) {
     const info = normalizeGeminiError(err);
-    console.error("❌ Gemini generateSynthesis ERROR (raw):", err);
-    console.error("❌ Gemini generateSynthesis ERROR message:", info.rawMessage);
-    console.error("✅ Friendly hint:", info.friendly);
+    console.error("❌ Gemini generateSynthesis ERROR:", info.rawMessage);
     throw new Error(info.friendly);
   }
 };

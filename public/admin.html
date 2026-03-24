@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HAZON — Admin</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #F5F5F3;
+    --black: #111111;
+    --white: #ffffff;
+    --border: rgba(17,17,17,0.08);
+    --danger: #c0392b;
+    --success: #27ae60;
+    --warning: #e67e22;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--black); font-family: 'DM Mono', monospace; min-height: 100vh; }
+  .serif { font-family: 'Playfair Display', serif; }
+
+  /* LOGIN */
+  #login-screen { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 2rem; padding: 2rem; }
+  #login-screen h1 { font-size: 2.5rem; font-weight: 400; }
+  #login-screen > p { font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.4; }
+  .login-box { background: var(--white); border: 1px solid var(--border); border-radius: 2rem; padding: 3rem; width: 100%; max-width: 400px; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.05); }
+  .login-box label { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; display: block; margin-bottom: 0.5rem; }
+  .login-box input { width: 100%; padding: 1rem 1.2rem; border: 1px solid var(--border); border-radius: 9999px; font-family: 'DM Mono', monospace; font-size: 0.85rem; background: var(--bg); outline: none; transition: border-color 0.2s; }
+  .login-box input:focus { border-color: var(--black); }
+  .btn-primary { width: 100%; padding: 1rem; background: var(--black); color: var(--white); border: none; border-radius: 9999px; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; cursor: pointer; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.8; }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+  .error-msg { font-size: 0.7rem; color: var(--danger); text-align: center; }
+  .pin-inputs { display: flex; gap: 0.75rem; justify-content: center; }
+  .pin-inputs input {
+      width: 3rem; 
+      height: 3.5rem; 
+      text-align: center;
+      font-size: 1.5rem; 
+      font-weight: 500;
+      border: 1px solid var(--border); 
+      border-radius: 1rem;
+      background: var(--bg); 
+      font-family: 'DM Mono', monospace;
+      outline: none; 
+      transition: border-color 0.2s;
+      caret-color: transparent;
+      padding: 0;
+      line-height: 3.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  .pin-inputs input:focus { border-color: var(--black); }
+
+  /* DASHBOARD */
+  #dashboard { display: none; min-height: 100vh; }
+  .header { position: sticky; top: 0; z-index: 100; background: rgba(245,245,243,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+  .header-left { display: flex; align-items: center; gap: 1rem; }
+  .header h2 { font-size: 1.1rem; font-weight: 400; }
+  .badge { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 9999px; background: var(--black); color: var(--white); }
+  .header-right { display: flex; align-items: center; gap: 1rem; }
+  .btn-sm { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 0.5rem 1rem; border-radius: 9999px; border: 1px solid var(--border); background: transparent; cursor: pointer; font-family: 'DM Mono', monospace; transition: all 0.2s; }
+  .btn-sm:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .month-select { font-family: 'DM Mono', monospace; font-size: 0.65rem; padding: 0.4rem 0.8rem; border: 1px solid var(--border); border-radius: 9999px; background: var(--bg); cursor: pointer; outline: none; }
+
+  .main { padding: 2rem; max-width: 1200px; margin: 0 auto; }
+
+  /* MAINTENANCE */
+  .maint-bar { border-radius: 1.5rem; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; background: var(--black); color: var(--white); transition: background 0.4s; }
+  .maint-bar.on { background: var(--danger); }
+  .maint-info h3 { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .maint-info p { font-size: 0.7rem; opacity: 0.6; }
+  .toggle-wrap { display: flex; align-items: center; gap: 0.75rem; }
+  .toggle-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; min-width: 2rem; }
+  .toggle { position: relative; width: 56px; height: 28px; background: rgba(255,255,255,0.2); border-radius: 9999px; cursor: pointer; border: none; outline: none; transition: background 0.3s; }
+  .toggle.on { background: rgba(255,255,255,0.5); }
+  .toggle::after { content: ''; position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; background: white; border-radius: 9999px; transition: transform 0.3s; }
+  .toggle.on::after { transform: translateX(28px); }
+
+  /* STATS */
+  .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  .stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 1.5rem; padding: 1.5rem; }
+  .stat-lbl { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.4; margin-bottom: 0.75rem; }
+  .stat-val { font-size: 2rem; font-weight: 400; letter-spacing: -0.03em; font-family: 'Playfair Display', serif; line-height: 1; }
+  .stat-sub { font-size: 0.6rem; opacity: 0.3; margin-top: 0.4rem; }
+
+  /* SECTION */
+  .section { margin-bottom: 2rem; }
+  .sec-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .sec-title { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.5; }
+
+  /* TABLE */
+  .tbl-card { background: var(--white); border: 1px solid var(--border); border-radius: 1.5rem; overflow: hidden; }
+  table { width: 100%; border-collapse: collapse; }
+  th { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.4; padding: 1rem 1.5rem; text-align: left; border-bottom: 1px solid var(--border); font-weight: 400; }
+  td { padding: 0.85rem 1.5rem; font-size: 0.72rem; border-bottom: 1px solid var(--border); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+
+  .tag { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 9999px; font-size: 0.58rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .tag-green { background: #e8f8f0; color: var(--success); }
+  .tag-grey  { background: #f0f0f0; color: #777; }
+  .tag-amber { background: #fef6e8; color: var(--warning); }
+  .tag-red   { background: #fde8e8; color: var(--danger); }
+
+  .loading { text-align: center; padding: 3rem; opacity: 0.3; font-size: 0.75rem; letter-spacing: 0.2em; }
+  .spinner { width: 24px; height: 24px; border: 2px solid var(--border); border-top-color: var(--black); border-radius: 9999px; animation: spin 0.8s linear infinite; margin: 0 auto 1rem; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .notif { position: fixed; top: 1.5rem; right: 1.5rem; z-index: 9999; background: var(--black); color: var(--white); padding: 1rem 1.5rem; border-radius: 1rem; font-size: 0.7rem; letter-spacing: 0.1em; transform: translateY(-120px); opacity: 0; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; }
+  .notif.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 768px) {
+    .header, .main { padding: 1rem; }
+    .maint-bar { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    th, td { padding: 0.7rem 1rem; font-size: 0.65rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="notif" id="notif"></div>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div style="text-align:center">
+    <h1 class="serif">Hazon</h1>
+    <p>Admin Dashboard</p>
+  </div>
+
+  <div class="login-box" id="step-email">
+    <div>
+      <label>Admin Email</label>
+      <input type="email" id="email-input" placeholder="hazon223@gmail.com" autocomplete="email" onkeydown="if(event.key==='Enter')sendPIN()"/>
+    </div>
+    <button class="btn-primary" id="send-pin-btn" onclick="sendPIN()">Send One-Time PIN</button>
+    <p class="error-msg" id="email-error" style="display:none"></p>
+  </div>
+
+  <div class="login-box" id="step-pin" style="display:none">
+    <div style="text-align:center">
+      <p style="font-size:0.7rem;opacity:0.5;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem">6-digit PIN sent to your email</p>
+      <div class="pin-inputs">
+        <input type="text" inputmode="numeric" maxlength="1" id="p0" oninput="pinInput(this,0)" onkeydown="pinKey(event,0)"/>
+        <input type="text" inputmode="numeric" maxlength="1" id="p1" oninput="pinInput(this,1)" onkeydown="pinKey(event,1)"/>
+        <input type="text" inputmode="numeric" maxlength="1" id="p2" oninput="pinInput(this,2)" onkeydown="pinKey(event,2)"/>
+        <input type="text" inputmode="numeric" maxlength="1" id="p3" oninput="pinInput(this,3)" onkeydown="pinKey(event,3)"/>
+        <input type="text" inputmode="numeric" maxlength="1" id="p4" oninput="pinInput(this,4)" onkeydown="pinKey(event,4)"/>
+        <input type="text" inputmode="numeric" maxlength="1" id="p5" oninput="pinInput(this,5)" onkeydown="pinKey(event,5)"/>
+      </div>
+    </div>
+    <button class="btn-primary" onclick="verifyPIN()">Verify PIN</button>
+    <button onclick="backToEmail()" style="font-size:0.65rem;opacity:0.4;background:none;border:none;cursor:pointer;text-align:center;letter-spacing:0.2em;text-transform:uppercase;font-family:'DM Mono',monospace">← Back</button>
+    <p class="error-msg" id="pin-error" style="display:none"></p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="header">
+    <div class="header-left">
+      <h2 class="serif">Hazon</h2>
+      <span class="badge">Admin</span>
+    </div>
+    <div class="header-right">
+      <select class="month-select" id="month-select" onchange="loadStats()"></select>
+      <button class="btn-sm" onclick="logout()">Sign Out</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- MAINTENANCE TOGGLE -->
+    <div class="maint-bar" id="maint-bar">
+      <div class="maint-info">
+        <h3>Maintenance Mode</h3>
+        <p id="maint-desc">App is live — all pages accessible.</p>
+      </div>
+      <div class="toggle-wrap">
+        <span class="toggle-lbl" id="toggle-lbl">OFF</span>
+        <button class="toggle" id="maint-toggle" onclick="toggleMaintenance()"></button>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="section">
+      <div class="sec-hdr"><span class="sec-title">Monthly Overview</span></div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-lbl">Total Users</div><div class="stat-val" id="s-users">—</div><div class="stat-sub">all time</div></div>
+        <div class="stat-card"><div class="stat-lbl">New Users</div><div class="stat-val" id="s-new">—</div><div class="stat-sub">this month</div></div>
+        <div class="stat-card"><div class="stat-lbl">Total Visions</div><div class="stat-val" id="s-visions">—</div><div class="stat-sub">all time</div></div>
+        <div class="stat-card"><div class="stat-lbl">Paid Visions</div><div class="stat-val" id="s-paid">—</div><div class="stat-sub">is_paid = true</div></div>
+        <div class="stat-card"><div class="stat-lbl">Free Visions</div><div class="stat-val" id="s-free">—</div><div class="stat-sub">is_paid = false</div></div>
+        <div class="stat-card"><div class="stat-lbl">Vision Revenue</div><div class="stat-val" id="s-vrev">—</div><div class="stat-sub">ZAR (vision unlocks)</div></div>
+        <div class="stat-card"><div class="stat-lbl">Offerings</div><div class="stat-val" id="s-off">—</div><div class="stat-sub">ZAR (support hazon)</div></div>
+        <div class="stat-card"><div class="stat-lbl">Total Revenue</div><div class="stat-val" id="s-total">—</div><div class="stat-sub">ZAR combined</div></div>
+      </div>
+    </div>
+
+    <!-- USERS -->
+    <div class="section">
+      <div class="sec-hdr"><span class="sec-title">Recent Users</span></div>
+      <div class="tbl-card">
+        <div id="ul" class="loading"><div class="spinner"></div>Loading...</div>
+        <table id="ut" style="display:none"><thead><tr><th>Email</th><th>Name</th><th>Language</th><th>Phone</th><th>Joined</th></tr></thead><tbody id="ub"></tbody></table>
+      </div>
+    </div>
+
+    <!-- VISION PAYMENTS -->
+    <div class="section">
+      <div class="sec-hdr"><span class="sec-title">Vision Payments</span></div>
+      <div class="tbl-card">
+        <div id="vpl" class="loading"><div class="spinner"></div>Loading...</div>
+        <table id="vpt" style="display:none"><thead><tr><th>Reference</th><th>Amount (ZAR)</th><th>Status</th><th>Date</th></tr></thead><tbody id="vpb"></tbody></table>
+      </div>
+    </div>
+
+    <!-- OFFERINGS -->
+    <div class="section">
+      <div class="sec-hdr"><span class="sec-title">Offerings / Support Hazon</span></div>
+      <div class="tbl-card">
+        <div id="pl" class="loading"><div class="spinner"></div>Loading...</div>
+        <table id="pt" style="display:none"><thead><tr><th>Email</th><th>USD</th><th>ZAR</th><th>Status</th><th>Paid At</th></tr></thead><tbody id="pb"></tbody></table>
+      </div>
+    </div>
+
+    <!-- VISIONS -->
+    <div class="section">
+      <div class="sec-hdr"><span class="sec-title">Recent Visions</span></div>
+      <div class="tbl-card">
+        <div id="vl" class="loading"><div class="spinner"></div>Loading...</div>
+        <table id="vt" style="display:none"><thead><tr><th>Title</th><th>Status</th><th>Paid</th><th>Language</th><th>Created</th></tr></thead><tbody id="vb"></tbody></table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ══ CONFIG — replace these with real values ══
+const SB_URL = 'https://hihspfadzevcdhqgixak.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhpaHNwZmFkemV2Y2RocWdpeGFrIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk0ODQyOTgsImV4cCI6MjA4NTA2MDI5OH0.KvlajPv6XiLQeHvQb5Nz8uHqCHKakcToXOS7X2NHaMM';
+const ADMINS = ['hazon223@gmail.com', 'davlatarslonov9899@gmail.com'];
+
+// ── Supabase REST ──
+async function sb(path, opts = {}) {
+  const r = await fetch(`${SB_URL}/rest/v1/${path}`, {
+    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Content-Type': 'application/json', ...opts.headers },
+    ...opts
+  });
+  const t = await r.text();
+  return t ? JSON.parse(t) : [];
+}
+
+// ── Notif ──
+function notif(msg) {
+  const el = document.getElementById('notif');
+  el.textContent = msg; el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ── PIN Auth ──
+let PIN = '';
+
+async function sendPIN() {
+  const email = document.getElementById('email-input').value.trim().toLowerCase();
+  const err   = document.getElementById('email-error');
+  err.style.display = 'none';
+
+  if (!ADMINS.includes(email)) {
+    err.textContent = 'Unauthorized email address.';
+    err.style.display = 'block';
+    return;
+  }
+
+  const btn = document.getElementById('send-pin-btn');
+  btn.disabled = true; btn.textContent = 'Sending...';
+
+  PIN = Math.floor(100000 + Math.random() * 900000).toString();
+
+  try {
+    await fetch(`${SB_URL}/functions/v1/send-admin-pin`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${SB_KEY}` },
+      body: JSON.stringify({ email: email, pin: PIN })
+    });
+    notif('PIN sent to ' + ADMIN);
+  } catch(e) {
+    console.warn('📌 Admin PIN:', PIN);
+    err.textContent = 'Email unavailable. Check browser console (F12) for PIN.';
+    err.style.display = 'block';
+  }
+
+  document.getElementById('step-email').style.display = 'none';
+  document.getElementById('step-pin').style.display   = 'flex';
+  setTimeout(() => document.getElementById('p0').focus(), 100);
+  btn.disabled = false; btn.textContent = 'Send One-Time PIN';
+}
+
+function pinInput(el, i) {
+  el.value = el.value.replace(/\D/g, '').slice(-1);
+  if (el.value && i < 5) document.getElementById('p'+(i+1)).focus();
+  if (i === 5 && el.value) verifyPIN();
+}
+function pinKey(e, i) { if (e.key === 'Backspace' && !e.target.value && i > 0) document.getElementById('p'+(i-1)).focus(); }
+
+function verifyPIN() {
+  const entered = [0,1,2,3,4,5].map(i => document.getElementById('p'+i).value).join('');
+  const err = document.getElementById('pin-error');
+  if (entered.length < 6) return;
+  if (entered === PIN) {
+    sessionStorage.setItem('hazon_admin','1');
+    initDashboard();
+  } else {
+    err.textContent = 'Incorrect PIN. Try again.';
+    err.style.display = 'block';
+    [0,1,2,3,4,5].forEach(i => document.getElementById('p'+i).value = '');
+    document.getElementById('p0').focus();
+  }
+}
+
+function backToEmail() {
+  document.getElementById('step-pin').style.display  = 'none';
+  document.getElementById('step-email').style.display = 'flex';
+}
+
+function logout() { sessionStorage.removeItem('hazon_admin'); location.reload(); }
+
+// ── Month Selector ──
+function initMonths() {
+  const sel = document.getElementById('month-select');
+  const now = new Date();
+  for (let i = 0; i < 12; i++) {
+    const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+    const o = document.createElement('option');
+    o.value = d.toISOString().slice(0,7);
+    o.textContent = d.toLocaleDateString('en-US', { month:'long', year:'numeric' });
+    if (i === 0) o.selected = true;
+    sel.appendChild(o);
+  }
+}
+
+function monthRange() {
+  const m = document.getElementById('month-select').value;
+  const s = m + '-01T00:00:00.000Z';
+  const d = new Date(m + '-01'); d.setMonth(d.getMonth()+1);
+  return { s, e: d.toISOString().slice(0,10) + 'T00:00:00.000Z' };
+}
+
+// ── Maintenance ──
+let maintOn = false;
+
+function loadMaintenance() {
+  maintOn = localStorage.getItem('hazon_maintenance') === 'true';
+  updateMaintUI();
+}
+
+function updateMaintUI() {
+  const bar = document.getElementById('maint-bar');
+  const tog = document.getElementById('maint-toggle');
+  const dsc = document.getElementById('maint-desc');
+  const lbl = document.getElementById('toggle-lbl');
+  if (maintOn) {
+    bar.classList.add('on'); tog.classList.add('on');
+    dsc.textContent = 'MAINTENANCE ON — App hidden. Only landing page visible.';
+    lbl.textContent = 'ON';
+  } else {
+    bar.classList.remove('on'); tog.classList.remove('on');
+    dsc.textContent = 'App is live — all pages accessible.';
+    lbl.textContent = 'OFF';
+  }
+}
+
+function toggleMaintenance() {
+  maintOn = !maintOn;
+  localStorage.setItem('hazon_maintenance', String(maintOn));
+  updateMaintUI();
+  notif(maintOn ? '⚠️ Maintenance ON' : '✅ App is live');
+}
+
+// ── Stats ──
+async function loadStats() {
+  const { s, e } = monthRange();
+  try {
+    const [allU, newU, allV, paidV, freeV, vPay, offer] = await Promise.all([
+      sb('app_users?select=id'),
+      sb(`app_users?select=id&created_at=gte.${s}&created_at=lt.${e}`),
+      sb('visions?select=id'),
+      sb('visions?select=id&is_paid=eq.true'),
+      sb('visions?select=id&is_paid=eq.false'),
+      sb('vision_payments?select=amount&status=eq.success'),
+      sb('payments?select=amount_zar&status=eq.success'),
+    ]);
+    const vRev = vPay.reduce((a,p) => a+(p.amount||0), 0);
+    const oRev = offer.reduce((a,p) => a+(p.amount_zar||0), 0);
+    document.getElementById('s-users').textContent  = allU.length;
+    document.getElementById('s-new').textContent    = newU.length;
+    document.getElementById('s-visions').textContent= allV.length;
+    document.getElementById('s-paid').textContent   = paidV.length;
+    document.getElementById('s-free').textContent   = freeV.length;
+    document.getElementById('s-vrev').textContent   = 'R'+(vRev/100).toFixed(0);
+    document.getElementById('s-off').textContent    = 'R'+(oRev/100).toFixed(0);
+    document.getElementById('s-total').textContent  = 'R'+((vRev+oRev)/100).toFixed(0);
+  } catch(e) { console.error('Stats:', e); }
+}
+
+// ── Tables ──
+const fmt = d => d ? new Date(d).toLocaleDateString('en-GB') : '—';
+const tag = (txt, cls) => `<span class="tag ${cls}">${txt}</span>`;
+
+function tShow(l,t) { document.getElementById(l).style.display='none'; document.getElementById(t).style.display='table'; }
+function tLoad(l)   { document.getElementById(l).style.display='block'; }
+function tErr(l)    { document.getElementById(l).innerHTML='<p style="opacity:.4;font-size:.7rem;padding:2rem;text-align:center">Could not load data</p>'; }
+
+async function loadUsers() {
+  try {
+    const d = await sb('app_users?select=email,full_name,preferred_language,phone_number,created_at&order=created_at.desc&limit=25');
+    document.getElementById('ub').innerHTML = d.map(u=>`<tr>
+      <td>${u.email||'—'}</td><td>${u.full_name||'—'}</td>
+      <td>${u.preferred_language||'en'}</td><td>${u.phone_number||'—'}</td><td>${fmt(u.created_at)}</td>
+    </tr>`).join('');
+    tShow('ul','ut');
+  } catch(e) { tErr('ul'); }
+}
+
+async function loadVisionPayments() {
+  try {
+    const d = await sb('vision_payments?select=reference,amount,status,created_at&order=created_at.desc&limit=25');
+    document.getElementById('vpb').innerHTML = d.map(p=>`<tr>
+      <td style="font-size:.63rem;opacity:.6">${(p.reference||'—').slice(0,22)}…</td>
+      <td>R${((p.amount||0)/100).toFixed(2)}</td>
+      <td>${tag(p.status||'—', p.status==='success'?'tag-green':p.status==='pending'?'tag-amber':'tag-red')}</td>
+      <td>${fmt(p.created_at)}</td>
+    </tr>`).join('');
+    tShow('vpl','vpt');
+  } catch(e) { tErr('vpl'); }
+}
+
+async function loadPayments() {
+  try {
+    const d = await sb('payments?select=email,amount_usd,amount_zar,status,paid_at,created_at&order=created_at.desc&limit=25');
+    document.getElementById('pb').innerHTML = d.map(p=>`<tr>
+      <td>${p.email||'—'}</td>
+      <td>${p.amount_usd?'$'+(p.amount_usd/100).toFixed(2):'—'}</td>
+      <td>${p.amount_zar?'R'+(p.amount_zar/100).toFixed(2):'—'}</td>
+      <td>${tag(p.status||'—', p.status==='success'?'tag-green':p.status==='pending'?'tag-amber':'tag-red')}</td>
+      <td>${fmt(p.paid_at||p.created_at)}</td>
+    </tr>`).join('');
+    tShow('pl','pt');
+  } catch(e) { tErr('pl'); }
+}
+
+async function loadVisions() {
+  try {
+    const d = await sb('visions?select=title,status,is_paid,language,created_at&order=created_at.desc&limit=25');
+    document.getElementById('vb').innerHTML = d.map(v=>`<tr>
+      <td>${v.title||'New Journey'}</td>
+      <td>${tag(v.status==='COMPLETE'?'Complete':'Draft', v.status==='COMPLETE'?'tag-green':'tag-grey')}</td>
+      <td>${tag(v.is_paid?'Paid':'Free', v.is_paid?'tag-green':'tag-grey')}</td>
+      <td>${v.language||'en'}</td>
+      <td>${fmt(v.created_at)}</td>
+    </tr>`).join('');
+    tShow('vl','vt');
+  } catch(e) { tErr('vl'); }
+}
+
+// ── Init Dashboard ──
+function initDashboard() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('dashboard').style.display    = 'block';
+  initMonths();
+  loadMaintenance();
+  loadStats();
+  loadUsers();
+  loadVisionPayments();
+  loadPayments();
+  loadVisions();
+}
+
+if (sessionStorage.getItem('hazon_admin') === '1') initDashboard();
+</script>
+</body>
+</html>
